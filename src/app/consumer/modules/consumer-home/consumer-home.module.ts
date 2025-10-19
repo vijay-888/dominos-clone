@@ -5,20 +5,22 @@ import { CardModule } from 'primeng/card';
 
 import { ConsumerHomeRoutingModule } from './consumer-home-routing.module';
 import { ConsumerHomeComponent } from './consumer-home.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { FavoritesComponent } from './components/favorites/favorites.component';
 import { MenuItemsComponent } from '../../../shared/components/menu-items/menu-items.component';
 import { MenuItemDetailsComponent } from '../../../shared/components/menu-item-details/menu-item-details.component';
 import { CartComponent } from '../../../shared/components/cart/cart.component';
+import { HeaderComponent } from '../../../shared/components/header/header.component';
 
 @NgModule({
   declarations: [
     ConsumerHomeComponent,
-    SidebarComponent,
     DashboardComponent,
+    FavoritesComponent,
     MenuItemsComponent,
     MenuItemDetailsComponent,
-    CartComponent
+    CartComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,

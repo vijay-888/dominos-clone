@@ -319,7 +319,7 @@
     justify-content: center;
     gap: 0.5rem;
     padding: 0.75rem 1rem;
-    background: linear-gradient(135deg, $content-blue 0%, lighten($content-blue, 10%) 100%);
+    background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
     color: $sidebar-white;
     border: none;
     border-radius: 8px;
@@ -327,7 +327,7 @@
     font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba($content-blue, 0.3);
+    box-shadow: 0 2px 8px rgba(139, 0, 0, 0.3);
     
     // Mobile: Smaller padding and font
     @include media-breakpoint-only(xs) {
@@ -370,14 +370,14 @@
     }
     
     &:hover {
-      background: linear-gradient(135deg, darken($content-blue, 5%) 0%, $content-blue 100%);
+      background: linear-gradient(135deg, #660000 0%, #B22222 100%);
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba($content-blue, 0.4);
+      box-shadow: 0 4px 12px rgba(139, 0, 0, 0.4);
     }
     
     &:active {
       transform: translateY(0);
-      box-shadow: 0 2px 6px rgba($content-blue, 0.3);
+      box-shadow: 0 2px 6px rgba(139, 0, 0, 0.3);
     }
   }
 }

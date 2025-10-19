@@ -1,0 +1,356 @@
+// Import mixin for Bootstrap breakpoints
+@import '../../../../styles/mixin.scss';
+// Import variables
+@import '../../../../styles/variable.scss';
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #000000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    
+    @include media-breakpoint-only(xs) {
+      padding: 0.75rem 1rem;
+    }
+    
+    @include media-breakpoint-only(sm) {
+      padding: 0.875rem 1.5rem;
+    }
+  }
+  
+  
+  .header-left {
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: scale(1.05);
+      }
+      
+      .logo-icon {
+        font-size: 2rem;
+        color: #ffffff;
+        animation: pulse 2s infinite;
+      }
+      
+      .logo-text {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: -0.5px;
+        
+        @include media-breakpoint-only(xs) {
+          font-size: 1.25rem;
+        }
+      }
+    }
+  }
+  
+  .header-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    
+    @include media-breakpoint-only(xs) {
+      gap: 1rem;
+    }
+    
+    .header-nav {
+      display: flex;
+      gap: 1.5rem;
+      
+      @include media-breakpoint-only(xs) {
+        gap: 1rem;
+      }
+      
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #ffffff;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          background: rgba(255, 255, 255, 0.1);
+          color: #ffffff;
+        }
+        
+        &.active {
+          background: rgba(255, 255, 255, 0.2);
+          color: #ffffff;
+        }
+        
+        i {
+          font-size: 1rem;
+        }
+        
+        span {
+          @include media-breakpoint-only(xs) {
+            display: none;
+          }
+        }
+        
+        @include media-breakpoint-only(xs) {
+          padding: 0.5rem;
+        }
+      }
+    }
+    
+    .cart-icon, .user-icon {
+      position: relative;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.4);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      }
+      
+      i {
+        font-size: 1.2rem;
+        color: #ffffff;
+        transition: color 0.3s ease;
+      }
+      
+      &:hover i {
+        color: white;
+      }
+      
+      @include media-breakpoint-only(xs) {
+        width: 40px;
+        height: 40px;
+        
+        i {
+          font-size: 1.1rem;
+        }
+      }
+    }
+    
+    .cart-icon {
+      &.has-items {
+        border-color: #ff6b35;
+        background: rgba(255, 107, 53, 0.2);
+        
+        i {
+          color: #ff6b35;
+        }
+        
+        &:hover {
+          background: #ff6b35;
+          border-color: #ff6b35;
+          
+          i {
+            color: white;
+          }
+        }
+      }
+      
+      .cart-badge {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: #ff6b35;
+        color: white;
+        font-size: 0.7rem;
+        font-weight: bold;
+        padding: 0.2rem 0.4rem;
+        border-radius: 10px;
+        min-width: 18px;
+        text-align: center;
+        line-height: 1;
+        box-shadow: 0 2px 4px rgba(255, 107, 53, 0.3);
+        animation: bounce 0.5s ease-in-out;
+      }
+    }
+  }
+}
+
+// User Dropdown Card
+.user-dropdown-card {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background: #1a1a1a;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 240px;
+  overflow: hidden;
+  animation: slideDown 0.3s ease-out;
+  z-index: 1001;
+  
+  @include media-breakpoint-only(xs) {
+    right: -0.5rem;
+    width: 220px;
+  }
+  
+  .user-card-header {
+    padding: 1rem;
+    background: linear-gradient(135deg, #333333 0%, #444444 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    
+    .user-avatar-small {
+      width: 35px;
+      height: 35px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      
+      i {
+        font-size: 1rem;
+        color: white;
+      }
+    }
+    
+    .user-info-compact {
+      flex: 1;
+      min-width: 0;
+      
+      .user-name-small {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 0.125rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      
+      .user-email-small {
+        display: block;
+        font-size: 0.75rem;
+        opacity: 0.8;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+  
+  .user-card-footer {
+    padding: 0.75rem 1rem;
+    background: #1a1a1a;
+    
+    .signout-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background: darken(#e74c3c, 10%);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(#e74c3c, 0.3);
+      }
+      
+      &:active {
+        transform: translateY(0);
+      }
+      
+      i {
+        font-size: 0.875rem;
+      }
+      
+      span {
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-3px);
+  }
+  60% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive adjustments
+@include media-breakpoint-only(xs) {
+  .header {
+    .header-container {
+      .header-left .logo {
+        gap: 0.5rem;
+        
+        .logo-icon {
+          font-size: 1.75rem;
+        }
+      }
+    }
+  }
+}

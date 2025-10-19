@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
     styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-    isCollapsed = false;
+    isCollapsed = true;
 
     menuItems = [
         {

@@ -1,0 +1,56 @@
+<header class="header">
+  <div class="header-container">
+    <!-- Left Side - Logo -->
+    <div class="header-left">
+      <div class="logo">
+        <i class="pi pi-pizza-slice logo-icon"></i>
+        <span class="logo-text">Food Frenzy</span>
+      </div>
+    </div>
+
+    <!-- Right Side - Navigation and User Actions -->
+    <div class="header-right">
+      <!-- Navigation Links -->
+      <nav class="header-nav">
+        <a href="#" class="nav-link" (click)="goToDashboard()" [class.active]="isActiveRoute('/consumer/dashboard')">
+          <i class="pi pi-home"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="#" class="nav-link" (click)="goToFavorites()" [class.active]="isActiveRoute('/consumer/favorites')">
+          <i class="pi pi-heart"></i>
+          <span>Favorites</span>
+        </a>
+      </nav>
+
+      <!-- Cart Icon -->
+      <div class="cart-icon" (click)="goToCart()" [class.has-items]="cartItemCount > 0">
+        <i class="pi pi-shopping-cart"></i>
+        <span class="cart-badge" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
+      </div>
+
+      <!-- User Profile Icon -->
+      <div class="user-icon" (click)="toggleUserMenu()">
+        <i class="pi pi-user"></i>
+      </div>
+
+      <!-- User Dropdown Card -->
+      <div class="user-dropdown-card" *ngIf="showUserMenu" (click)="$event.stopPropagation()">
+        <div class="user-card-header">
+          <div class="user-avatar-small">
+            <i class="pi pi-user"></i>
+          </div>
+          <div class="user-info-compact">
+            <span class="user-name-small">John Doe</span>
+            <span class="user-email-small">john.doe@example.com</span>
+          </div>
+        </div>
+        <div class="user-card-footer">
+          <button class="signout-btn" (click)="logout()">
+            <i class="pi pi-sign-out"></i>
+            <span>Sign Out</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

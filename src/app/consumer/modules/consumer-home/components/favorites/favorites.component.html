@@ -1,0 +1,18 @@
+<div class="favorites-container">
+  <div class="favorites-header">
+    <h2>Your Favorites</h2>
+    <p>Manage your favorite food items here</p>
+  </div>
+  
+  <div class="favorites-content">
+    <div class="empty-state" *ngIf="true">
+      <i class="pi pi-heart empty-icon"></i>
+      <h3>No favorites yet</h3>
+      <p>Start adding items to your favorites to see them here!</p>
+      <button class="btn-primary" (click)="goToDashboard()">
+        <i class="pi pi-home"></i>
+        Browse Menu
+      </button>
+    </div>
+  </div>
+</div>

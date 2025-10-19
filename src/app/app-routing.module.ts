@@ -6,15 +6,21 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: '/auth/login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'auth',
     loadChildren: () =>
       import('./auth/module/auth/auth.module').then(m => m.AuthModule)
   },
+
   {
     path: 'consumer',
     loadChildren: () =>
       import('./consumer/modules/consumer-home/consumer-home.module').then(m => m.ConsumerHomeModule)
   },
-  { path: '**', redirectTo: '/login' }
+  // { path: '**', redirectTo: '/login' }
 ];
 
 @NgModule({
