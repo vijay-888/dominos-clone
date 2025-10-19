@@ -1,0 +1,87 @@
+// Color Variables for Auth Components (Login & Register)
+
+// Primary Colors
+$primary-red: #ff4444;
+$primary-green: #5d9655;
+$primary-green-dark: #224b0e;
+$primary-blue: #1e40af;
+$primary-blue-dark: #1e3a8a;
+
+// Background Colors
+$background-black: #000000;
+$background-dark-gray: #1a1a1a;
+$background-medium-gray: #2d2d2d;
+$background-white: #ffffff;
+$background-white-transparent: rgba(255, 255, 255, 0.95);
+$background-white-semi-transparent: rgba(255, 255, 255, 0.85);
+$background-card-gradient-start: rgba(255, 255, 255, 0.95);
+$background-card-gradient-end: rgba(255, 255, 255, 0.85);
+
+// Text Colors
+$text-white: #ffffff;
+$text-gray: #666;
+$text-dark-gray: #333;
+$text-light-gray: #999;
+
+// Border Colors
+$border-light-gray: #e1e5e9;
+$border-black: #000000;
+
+// Error Colors
+$error-red: #e74c3c;
+
+// Success Colors
+$success-green: #27ae60;
+$success-green-light: #2ecc71;
+
+// Warning Colors
+$warning-orange: #f39c12;
+
+// Social Media Colors
+$google-blue: #4285f4;
+$google-blue-light: #f8f9ff;
+$apple-black: #000000;
+$apple-gray: #f5f5f5;
+
+// Shadow Colors
+$shadow-black-light: rgba(0, 0, 0, 0.1);
+$shadow-black-medium: rgba(0, 0, 0, 0.2);
+$shadow-black-dark: rgba(0, 0, 0, 0.3);
+
+// Animation Colors
+$animation-orange: #ff6b35;
+$animation-yellow: #f7931e;
+$animation-gold: #ffd23f;
+$animation-green: #06ffa5;
+$animation-blue: #3a86ff;
+
+// Text Shadow Colors for Flicker Animation
+$flicker-white: #fff;
+$flicker-yellow: #FF3;
+$flicker-orange: #FF6600;
+$flicker-orange-dark: #F90;
+$flicker-red: #FF3300;
+$flicker-red-dark: #C33;
+$flicker-red-darker: #CC0000;
+
+// Password Strength Colors
+$password-weak: #e74c3c;
+$password-medium: #f39c12;
+$password-strong: #27ae60;
+$password-very-strong: #2ecc71;
+
+// Overlay Colors
+$overlay-black-light: rgba(0, 0, 0, 0.3);
+$overlay-white-light: rgba(255, 255, 255, 0.1);
+$overlay-white-lighter: rgba(255, 255, 255, 0.05);
+$overlay-white-medium: rgba(255, 255, 255, 0.2);
+$overlay-white-semi: rgba(255, 255, 255, 0.3);
+$overlay-white-heavy: rgba(255, 255, 255, 0.8);
+
+// Focus Colors
+$focus-black: rgba(0, 0, 0, 0.2);
+$focus-black-light: rgba(0, 0, 0, 0.1);
+
+// Emoji Shadow Colors
+$emoji-shadow-orange: rgba(255, 107, 53, 0.8);
+$emoji-shadow-orange-light: rgba(255, 107, 53, 0.5);

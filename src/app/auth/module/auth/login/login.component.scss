@@ -251,7 +251,7 @@
   }
   
   ::ng-deep .login-card .p-card-body {
-    padding: 2rem;
+    padding: 1rem;
     background-color: black
   }
   
@@ -457,22 +457,61 @@
         }
   }
   
-  // Responsive design
-  @media (max-width: 768px) {
+  // Mobile-first responsive design using Bootstrap breakpoints
+  @import '../../../../../styles/mixin';
+
+  // Base styles (mobile-first) - xs breakpoint (0px+)
+  .login-container {
+    justify-content: center;
+    // padding: 15px;
+  }
+
+  .login-content {
+    max-width: 100%;
+    // padding: 10px;
+  }
+
+  .login-header {
+    .logo {
+      .animated-title {
+        font-size: 2rem;
+        letter-spacing: 1px;
+        
+        &::before {
+          left: -30px;
+          font-size: 1.2rem;
+        }
+        
+        &::after {
+          right: -30px;
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+
+  ::ng-deep .login-card .p-card-header {
+    padding: 0.8rem 0.5rem;
+  }
+  
+  ::ng-deep .login-card .p-card-body {
+    padding: 1rem;
+  }
+
+  // Small devices (sm) - 576px+
+  @include media-breakpoint-up(sm) {
     .login-container {
-      justify-content: center;
       padding: 20px;
     }
 
     .login-content {
-      max-width: 100%;
       padding: 10px;
     }
 
     .login-header {
       .logo {
         .animated-title {
-          font-size: 3rem !important;
+          font-size: 3rem;
           letter-spacing: 2px;
           
           &::before {
@@ -493,14 +532,15 @@
     }
     
     ::ng-deep .login-card .p-card-body {
-      padding: 1.5rem;
+      padding: 1rem;
     }
   }
 
-  // Tablet/iPad specific adjustments
-  @media (min-width: 769px) and (max-width: 1024px) {
+  // Medium devices (md) - 768px+
+  @include media-breakpoint-up(md) {
     .login-container {
-      padding: 30px;
+      justify-content: flex-start;
+      // padding: 30px;
     }
 
     .login-content {
@@ -526,45 +566,54 @@
     }
 
     ::ng-deep .login-card .p-card-header {
-      padding: 1.2rem;
+      padding: 1rem;
     }
     
     ::ng-deep .login-card .p-card-body {
-      padding: 2rem;
+      padding: 1rem;
     }
   }
 
-  // Small mobile devices
-  @media (max-width: 480px) {
+  // Large devices (lg) - 992px+
+  @include media-breakpoint-up(lg) {
     .login-container {
-      padding: 15px;
+      padding-left: 50px;
+    }
+
+    .login-content {
+      max-width: 45%;
     }
 
     .login-header {
       .logo {
         .animated-title {
-          font-size: 2rem !important;
-          letter-spacing: 1px;
+          font-size: 3.5rem;
           
           &::before {
-            left: -30px;
-            font-size: 1.2rem;
+            left: -70px;
+            font-size: 3rem;
           }
           
           &::after {
-            right: -30px;
-            font-size: 1.2rem;
+            right: -70px;
+            font-size: 3rem;
           }
         }
       }
     }
+  }
 
-    ::ng-deep .login-card .p-card-header {
-      padding: 0.8rem 0.5rem;
+  // Extra large devices (xl) - 1200px+
+  @include media-breakpoint-up(xl) {
+    .login-content {
+      max-width: 42%;
     }
-    
-    ::ng-deep .login-card .p-card-body {
-      padding: 1rem;
+  }
+
+  // Extra extra large devices (xxl) - 1400px+
+  @include media-breakpoint-up(xxl) {
+    .login-content {
+      max-width: 35%;
     }
   }
   

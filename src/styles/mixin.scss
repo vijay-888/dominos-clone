@@ -1,0 +1,64 @@
+// Bootstrap breakpoints with mobile-first approach
+// Usage: @import 'mixin';
+
+// Mobile-first breakpoints (min-width)
+@mixin media-breakpoint-up($breakpoint) {
+  @if $breakpoint == "xs" {
+    @media (min-width: 0px) { @content; }
+  } @else if $breakpoint == "sm" {
+    @media (min-width: 576px) { @content; }
+  } @else if $breakpoint == "md" {
+    @media (min-width: 768px) { @content; }
+  } @else if $breakpoint == "lg" {
+    @media (min-width: 992px) { @content; }
+  } @else if $breakpoint == "xl" {
+    @media (min-width: 1200px) { @content; }
+  } @else if $breakpoint == "xxl" {
+    @media (min-width: 1400px) { @content; }
+  }
+}
+
+// Desktop-first breakpoints (max-width) - for specific cases
+@mixin media-breakpoint-down($breakpoint) {
+  @if $breakpoint == "xs" {
+    @media (max-width: 575.98px) { @content; }
+  } @else if $breakpoint == "sm" {
+    @media (max-width: 767.98px) { @content; }
+  } @else if $breakpoint == "md" {
+    @media (max-width: 991.98px) { @content; }
+  } @else if $breakpoint == "lg" {
+    @media (max-width: 1199.98px) { @content; }
+  } @else if $breakpoint == "xl" {
+    @media (max-width: 1399.98px) { @content; }
+  }
+}
+
+// Between breakpoints
+@mixin media-breakpoint-between($lower, $upper) {
+  @if $lower == "xs" and $upper == "sm" {
+    @media (min-width: 0px) and (max-width: 767.98px) { @content; }
+  } @else if $lower == "sm" and $upper == "md" {
+    @media (min-width: 576px) and (max-width: 991.98px) { @content; }
+  } @else if $lower == "md" and $upper == "lg" {
+    @media (min-width: 768px) and (max-width: 1199.98px) { @content; }
+  } @else if $lower == "lg" and $upper == "xl" {
+    @media (min-width: 992px) and (max-width: 1399.98px) { @content; }
+  }
+}
+
+// Only specific breakpoint
+@mixin media-breakpoint-only($breakpoint) {
+  @if $breakpoint == "xs" {
+    @media (max-width: 575.98px) { @content; }
+  } @else if $breakpoint == "sm" {
+    @media (min-width: 576px) and (max-width: 767.98px) { @content; }
+  } @else if $breakpoint == "md" {
+    @media (min-width: 768px) and (max-width: 991.98px) { @content; }
+  } @else if $breakpoint == "lg" {
+    @media (min-width: 992px) and (max-width: 1199.98px) { @content; }
+  } @else if $breakpoint == "xl" {
+    @media (min-width: 1200px) and (max-width: 1399.98px) { @content; }
+  } @else if $breakpoint == "xxl" {
+    @media (min-width: 1400px) { @content; }
+  }
+}
