@@ -10,7 +10,7 @@
     background-position: center;
     background-attachment: fixed;
     overflow: hidden;
-    padding: 20px 0 20px 50px;
+    padding: 0px 0 2px 50px;
   }
   
   .register-background {
@@ -44,8 +44,8 @@
     position: relative;
     z-index: 2;
     width: 100%;
-    max-width: 600px;
-    padding: 20px;
+    max-width: 45%;
+    padding: 5px;
   }
   
   .register-card-wrapper {
@@ -119,6 +119,15 @@
       transform: scale(1.15) translateY(-6px) rotate(3deg);
     }
   }
+
+  @keyframes bounceEmoji {
+    0%, 100% {
+      transform: translateY(-50%) scale(1);
+    }
+    50% {
+      transform: translateY(-60%) scale(1.1);
+    }
+  }
   
   
   .register-header {
@@ -135,12 +144,12 @@
           background: linear-gradient(45deg, #ff6b35, #f7931e, #ffd23f, #06ffa5, #3a86ff);
           background-size: 300% 300%;
           -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
+          // -webkit-text-fill-color: transparent;
           background-clip: text;
           letter-spacing: 4px;
           position: relative;
           text-transform: uppercase;
-          font-family: 'Impact', 'Arial Black', sans-serif;
+          font-family: inherit;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -150,21 +159,27 @@
           &::before {
             content: '🍕';
             position: absolute;
-            left: -60px;
-            top: -5px;
-            font-size: 2.5rem;
-            z-index: 10;
+            left: -70px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3rem;
+            z-index: 100;
+            display: block;
             filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.8));
+            animation: bounceEmoji 2s ease-in-out infinite;
           }
           
           &::after {
             content: '🍔';
             position: absolute;
-            right: -60px;
-            top: -5px;
-            font-size: 2.5rem;
-            z-index: 10;
+            right: -70px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3rem;
+            z-index: 100;
+            display: block;
             filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.8));
+            animation: bounceEmoji 2s ease-in-out infinite 1s;
           }
         }
         
@@ -175,7 +190,7 @@
           background: linear-gradient(45deg, #ff6b35, #f7931e, #ffd23f, #06ffa5, #3a86ff);
           background-size: 300% 300%;
           -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
+          // -webkit-text-fill-color: transparent;
           background-clip: text;
           text-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
           filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
@@ -190,7 +205,7 @@
   }
   
   ::ng-deep .register-card .p-card-body {
-    padding: 2rem;
+    padding: 1rem;
     background-color: black;
   }
   
