@@ -128,6 +128,49 @@
       transform: translateY(-60%) scale(1.1);
     }
   }
+
+  @keyframes flicker {
+    0%, 100% {
+      text-shadow:
+        0 -1px 3px #fff,
+        0 -2px 6px #FF3,
+        0 -4px 8px #FF6600,
+        0 -6px 12px #F90,
+        0 -8px 16px #FF3300,
+        0 -10px 20px #C33,
+        0 -12px 24px #CC0000;
+    }
+    25% {
+      text-shadow:
+        0 -2px 4px #fff,
+        0 -3px 8px #FF3,
+        0 -5px 10px #FF6600,
+        0 -7px 14px #F90,
+        0 -9px 18px #FF3300,
+        0 -11px 22px #C33,
+        0 -13px 26px #CC0000;
+    }
+    50% {
+      text-shadow:
+        0 -2px 6px #fff,
+        0 -4px 12px #FF3,
+        0 -6px 14px #FF6600,
+        0 -8px 16px #F90,
+        0 -10px 20px #FF3300,
+        0 -12px 24px #C33,
+        0 -14px 28px #CC0000;
+    }
+    75% {
+      text-shadow:
+        0 -3px 5px #fff,
+        0 -5px 10px #FF3,
+        0 -7px 12px #FF6600,
+        0 -9px 18px #F90,
+        0 -11px 22px #FF3300,
+        0 -13px 26px #C33,
+        0 -15px 30px #CC0000;
+    }
+  }
   
   
   .register-header {
@@ -135,26 +178,27 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 10px;
   
         .animated-title {
           margin: 0;
           font-size: 3.5rem;
           font-weight: 900;
-          background: linear-gradient(45deg, #ff6b35, #f7931e, #ffd23f, #06ffa5, #3a86ff);
-          background-size: 300% 300%;
-          -webkit-background-clip: text;
-          // -webkit-text-fill-color: transparent;
-          background-clip: text;
-          letter-spacing: 4px;
+          font-family: 'Courier New', Courier, monospace;
+          color: #ff4444;
+          text-shadow:
+            0px -1px 3px #fff,
+            0px -2px 6px #FF3,
+            0px -4px 8px #FF6600,
+            0px -6px 12px #F90,
+            0px -8px 16px #FF3300,
+            0px -10px 20px #C33,
+            0px -12px 24px #CC0000;
           position: relative;
           text-transform: uppercase;
-          font-family: inherit;
           display: flex;
           align-items: center;
           justify-content: center;
-          text-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
-          filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+          animation: flicker 2s infinite;
           
           &::before {
             content: '🍕';
@@ -422,24 +466,110 @@
   @media (max-width: 768px) {
     .register-container {
       justify-content: center;
-      padding-left: 20px;
-      padding-right: 20px;
+      padding: 20px;
     }
-  
+
     .register-content {
       max-width: 100%;
       padding: 10px;
     }
-  
+
     .register-header {
-      .logo h1 {
-        font-size: 1.5rem;
+      .logo {
+        .animated-title {
+          font-size: 3rem !important;
+          letter-spacing: 2px;
+          
+          &::before {
+            left: -40px;
+            font-size: 1.8rem;
+          }
+          
+          &::after {
+            right: -40px;
+            font-size: 1.8rem;
+          }
+        }
       }
     }
-  
-    ::ng-deep .register-card .p-card-header,
+
+    ::ng-deep .register-card .p-card-header {
+      padding: 1rem 0.5rem;
+    }
+    
+    ::ng-deep .register-card .p-card-body {
+      padding: 1rem;
+    }
+  }
+
+  // Tablet/iPad specific adjustments
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .register-container {
+      padding: 30px;
+    }
+
+    .register-content {
+      max-width: 55%;
+    }
+
+    .register-header {
+      .logo {
+        .animated-title {
+          font-size: 4rem;
+          
+          &::before {
+            left: -60px;
+            font-size: 2.5rem;
+          }
+          
+          &::after {
+            right: -60px;
+            font-size: 2.5rem;
+          }
+        }
+      }
+    }
+
+    ::ng-deep .register-card .p-card-header {
+      padding: 1.2rem;
+    }
+    
     ::ng-deep .register-card .p-card-body {
       padding: 1.5rem;
+    }
+  }
+
+  // Small mobile devices
+  @media (max-width: 480px) {
+    .register-container {
+      padding: 15px;
+    }
+
+    .register-header {
+      .logo {
+        .animated-title {
+          font-size: 2rem !important;
+          letter-spacing: 1px;
+          
+          &::before {
+            left: -30px;
+            font-size: 1.2rem;
+          }
+          
+          &::after {
+            right: -30px;
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+
+    ::ng-deep .register-card .p-card-header {
+      padding: 0.8rem 0.5rem;
+    }
+    
+    ::ng-deep .register-card .p-card-body {
+      padding: 0.8rem;
     }
   }
   
