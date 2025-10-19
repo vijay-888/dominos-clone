@@ -1,0 +1,68 @@
+<div class="menu-items-container">
+    <!-- Filter Tabs -->
+    <div class="filter-tabs-container mb-4">
+      <div class="filter-tabs">
+        <button 
+          *ngFor="let category of categories" 
+          class="filter-tab"
+          [class.active]="selectedCategory === category.id"
+          (click)="filterByCategory(category.id)">
+          {{ category.name }}
+        </button>
+      </div>
+    </div>
+    
+    <!-- Search Bar -->
+    <div class="search-container mb-4">
+      <div class="search-wrapper">
+        <i class="pi pi-search search-icon"></i>
+        <input 
+          type="text" 
+          class="search-input" 
+          placeholder="Search menu items..." 
+          [(ngModel)]="searchTerm"
+          (input)="filterMenuItems()">
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-4 mb-4" *ngFor="let item of filteredMenuItems">
+        <p-card [style]="{'width': '100%'}" styleClass="menu-item-card">
+          <ng-template pTemplate="content">
+            <div class="card-content">
+              <!-- Image Section - 60% height -->
+              <div class="item-image">
+                <img [src]="item.image" [alt]="item.name" class="food-image">
+              </div>
+              
+              <!-- Content Section - 40% height -->
+              <div class="item-content">
+                <!-- Food Item Name -->
+                <h4 class="item-name">{{ item.name }}</h4>
+                
+                <!-- Description -->
+                <p class="item-description">{{ item.description }}</p>
+                
+                <!-- Price and Rating Row -->
+                <div class="item-footer">
+                  <span class="item-price">{{ item.price }}</span>
+                  <div class="item-rating">
+                    <i class="pi pi-star-fill"></i>
+                    <span class="rating-value">{{ item.rating }}</span>
+                  </div>
+                </div>
+                
+                <!-- Order Now Button -->
+                <div class="item-actions">
+                  <button class="order-btn" (click)="viewDetails(item)">
+                    <i class="pi pi-shopping-cart"></i>
+                    Order Now
+                  </button>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </p-card>
+      </div>
+    </div>
+  </div>

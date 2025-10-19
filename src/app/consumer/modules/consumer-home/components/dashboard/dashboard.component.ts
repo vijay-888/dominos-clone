@@ -13,28 +13,28 @@ export class DashboardComponent implements OnInit {
             value: '24',
             icon: 'pi pi-shopping-cart',
             color: '#3498db',
-            change: '+12%'
+            // change: '+12%'
         },
         {
             title: 'Favorite Items',
             value: '8',
             icon: 'pi pi-heart',
             color: '#e74c3c',
-            change: '+3'
+            // change: '+3'
         },
         {
             title: 'Total Spent',
             value: '$456',
             icon: 'pi pi-dollar',
             color: '#27ae60',
-            change: '+8%'
+            // change: '+8%'
         },
         {
             title: 'Restaurants',
             value: '12',
             icon: 'pi pi-building',
             color: '#f39c12',
-            change: '+2'
+            // change: '+2'
         }
     ];
 

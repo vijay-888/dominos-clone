@@ -5,7 +5,7 @@
 
 .sidebar {
   height: 100vh;
-  background: linear-gradient(180deg, $sidebar-bg-start 0%, $sidebar-bg-end 100%);
+  background: #000000;
   color: $sidebar-white;
   transition: width 0.3s ease;
   display: flex;
@@ -59,7 +59,7 @@
   }
 
   .toggle-btn {
-    background: none;
+    background: #000000;
     border: none;
     color: $sidebar-white;
     cursor: pointer;
@@ -68,7 +68,7 @@
     transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: $sidebar-hover-bg;
+      background-color: #333333;
     }
 
     i {

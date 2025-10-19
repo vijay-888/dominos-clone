@@ -1,0 +1,487 @@
+// Import mixin for Bootstrap breakpoints
+@import '../../../../styles/mixin.scss';
+// Import variables
+@import '../../../../styles/variable.scss';
+
+.menu-item-details-container {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  
+  // Mobile first (xs) - smaller padding
+  @include media-breakpoint-up(sm) {
+    padding: 1.5rem;
+  }
+  
+  @include media-breakpoint-up(md) {
+    padding: 2rem;
+  }
+}
+
+.details-header {
+  margin-bottom: 2rem;
+  
+  .back-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: transparent;
+    border: 2px solid $content-blue;
+    color: $content-blue;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    
+    &:hover {
+      background: $content-blue;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba($content-blue, 0.3);
+    }
+    
+    i {
+      font-size: 1rem;
+    }
+  }
+}
+
+.details-content {
+  .row {
+    margin: 0 -1rem;
+    
+    [class*="col-"] {
+      padding: 0 1rem;
+    }
+  }
+}
+
+.image-section {
+  .main-image {
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    
+    .item-large-image {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      
+      &:hover {
+        transform: scale(1.05);
+      }
+      
+      // Mobile: Smaller height
+      @include media-breakpoint-only(xs) {
+        height: 250px;
+      }
+      
+      // Small screens: Medium height
+      @include media-breakpoint-only(sm) {
+        height: 300px;
+      }
+      
+      // Medium+ screens: Standard height
+      @include media-breakpoint-up(md) {
+        height: 400px;
+      }
+    }
+  }
+  
+  .image-gallery {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    
+    .gallery-item {
+      flex-shrink: 0;
+      
+      .gallery-thumbnail {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}
+
+.details-section {
+  padding: 1rem 0;
+  
+  .item-header {
+    margin-bottom: 2rem;
+    
+    .item-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: $dashboard-text-dark;
+      margin: 0 0 1rem 0;
+      line-height: 1.2;
+      
+      // Mobile: Smaller font
+      @include media-breakpoint-only(xs) {
+        font-size: 1.8rem;
+      }
+      
+      // Small screens: Medium font
+      @include media-breakpoint-only(sm) {
+        font-size: 2rem;
+      }
+      
+      // Medium+ screens: Standard font
+      @include media-breakpoint-up(md) {
+        font-size: 2.5rem;
+      }
+    }
+    
+    .item-rating {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      
+      .stars {
+        display: flex;
+        gap: 0.125rem;
+        
+        i {
+          color: #ddd;
+          font-size: 1.2rem;
+          
+          &.filled {
+            color: $stat-orange;
+          }
+          
+          &.half-star {
+            color: $stat-orange;
+            opacity: 0.5;
+          }
+        }
+      }
+      
+      .rating-value {
+        font-weight: 600;
+        color: $dashboard-text-dark;
+        font-size: 1.1rem;
+      }
+      
+      .rating-count {
+        color: $dashboard-text-gray;
+        font-size: 0.9rem;
+      }
+    }
+    
+    .item-price {
+      font-size: 2rem;
+      font-weight: bold;
+      color: $stat-green;
+      
+      // Mobile: Smaller font
+      @include media-breakpoint-only(xs) {
+        font-size: 1.5rem;
+      }
+      
+      // Small screens: Medium font
+      @include media-breakpoint-only(sm) {
+        font-size: 1.75rem;
+      }
+      
+      // Medium+ screens: Standard font
+      @include media-breakpoint-up(md) {
+        font-size: 2rem;
+      }
+    }
+  }
+  
+  .item-description {
+    margin-bottom: 2rem;
+    
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: $dashboard-text-dark;
+      margin: 0 0 1rem 0;
+    }
+    
+    p {
+      color: $dashboard-text-gray;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+  }
+  
+  .ingredients-section {
+    margin-bottom: 2rem;
+    
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: $dashboard-text-dark;
+      margin: 0 0 1rem 0;
+    }
+    
+    .ingredients-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      
+      .ingredient-tag {
+        background: rgba($content-blue, 0.1);
+        color: $content-blue;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        border: 1px solid rgba($content-blue, 0.2);
+      }
+    }
+  }
+  
+  .nutritional-info {
+    margin-bottom: 2rem;
+    
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: $dashboard-text-dark;
+      margin: 0 0 1rem 0;
+    }
+    
+    .nutrition-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+      
+      .nutrition-item {
+        background: $dashboard-white;
+        padding: 1rem;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        
+        .nutrition-label {
+          display: block;
+          font-size: 0.8rem;
+          color: $dashboard-text-gray;
+          margin-bottom: 0.5rem;
+          text-transform: uppercase;
+          font-weight: 500;
+        }
+        
+        .nutrition-value {
+          display: block;
+          font-size: 1.2rem;
+          font-weight: bold;
+          color: $dashboard-text-dark;
+        }
+      }
+    }
+  }
+  
+  .additional-info {
+    margin-bottom: 2rem;
+    
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      color: $dashboard-text-gray;
+      
+      i {
+        color: $content-blue;
+        font-size: 1rem;
+        width: 20px;
+      }
+      
+      span {
+        font-size: 0.95rem;
+      }
+    }
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    
+    // Mobile: Stack buttons
+    @include media-breakpoint-only(xs) {
+      flex-direction: column;
+    }
+    
+    .btn-primary, .btn-secondary {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      
+      i {
+        font-size: 1.1rem;
+      }
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, $content-blue 0%, lighten($content-blue, 10%) 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba($content-blue, 0.3);
+      
+      &:hover {
+        background: linear-gradient(135deg, darken($content-blue, 5%) 0%, $content-blue 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba($content-blue, 0.4);
+      }
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: $content-blue;
+      border: 2px solid $content-blue;
+      
+      &:hover {
+        background: $content-blue;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba($content-blue, 0.3);
+      }
+    }
+  }
+}
+
+.reviews-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid $content-border;
+  
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: $dashboard-text-dark;
+    margin: 0 0 2rem 0;
+  }
+  
+  .reviews-list {
+    .review-item {
+      background: $dashboard-white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      
+      .review-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        
+        .reviewer-info {
+          .reviewer-name {
+            font-weight: 600;
+            color: $dashboard-text-dark;
+            margin-right: 1rem;
+          }
+          
+          .review-rating {
+            display: inline-flex;
+            gap: 0.125rem;
+            
+            i {
+              color: #ddd;
+              font-size: 0.9rem;
+              
+              &.filled {
+                color: $stat-orange;
+              }
+            }
+          }
+        }
+        
+        .review-date {
+          color: $dashboard-text-gray;
+          font-size: 0.9rem;
+        }
+      }
+      
+      .review-comment {
+        color: $dashboard-text-gray;
+        line-height: 1.6;
+        margin: 0;
+      }
+    }
+  }
+}
+
+.similar-items-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid $content-border;
+  
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: $dashboard-text-dark;
+    margin: 0 0 2rem 0;
+  }
+  
+  .similar-items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    
+    .similar-item {
+      background: $dashboard-white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+      
+      .similar-item-image {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+      }
+      
+      .similar-item-info {
+        padding: 1rem;
+        
+        h4 {
+          font-size: 1rem;
+          font-weight: 600;
+          color: $dashboard-text-dark;
+          margin: 0 0 0.5rem 0;
+        }
+        
+        .similar-item-price {
+          font-size: 1.1rem;
+          font-weight: bold;
+          color: $stat-green;
+        }
+      }
+    }
+  }
+}
