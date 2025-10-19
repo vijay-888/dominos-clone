@@ -2,738 +2,763 @@
 @import '../../../../../styles.scss';
 
 .register-container {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    position: relative;
-    background: linear-gradient($overlay-black-light, $overlay-black-light), 
-                url('../../../../../assets/images/food.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  background: linear-gradient($overlay-black-light, $overlay-black-light),
+    url('../../../../../assets/images/food.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+.register-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.food-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 20% 80%, $overlay-white-light 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, $overlay-white-light 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, $overlay-white-lighter 0%, transparent 50%);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
   }
-  
-  .register-background {
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.register-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 45%;
+  padding: 5px;
+}
+
+.register-card-wrapper {
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.register-card {
+  border-radius: 20px;
+  box-shadow:
+    0 20px 40px $shadow-black-light,
+    0 0 0 1px $overlay-white-medium,
+    inset 0 1px 0 $overlay-white-semi;
+  border: none;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, $background-card-gradient-start 0%, $background-card-gradient-end 100%);
+  backdrop-filter: blur(20px);
+  position: relative;
+
+  &::before {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        $overlay-white-heavy 50%,
+        transparent 100%);
     z-index: 1;
   }
-  
-  .food-pattern {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-      radial-gradient(circle at 20% 80%, $overlay-white-light 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, $overlay-white-light 0%, transparent 50%),
-      radial-gradient(circle at 40% 40%, $overlay-white-lighter 0%, transparent 50%);
-    animation: float 6s ease-in-out infinite;
+}
+
+::ng-deep .register-card .p-card-header {
+  background: linear-gradient(135deg, $background-dark-gray, $background-medium-gray, $background-black);
+  color: $text-white;
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
   }
-  
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+
+  100% {
+    left: 100%;
   }
-  
-  .register-content {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 45%;
-    padding: 5px;
+}
+
+@keyframes ooBounce {
+
+  0%,
+  100% {
+    transform: scale(1) translateY(0px) rotate(0deg);
   }
-  
-  .register-card-wrapper {
-    animation: slideUp 0.6s ease-out;
+
+  25% {
+    transform: scale(1.2) translateY(-8px) rotate(-5deg);
   }
-  
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
+
+  50% {
+    transform: scale(0.9) translateY(-12px) rotate(0deg);
+  }
+
+  75% {
+    transform: scale(1.15) translateY(-6px) rotate(3deg);
+  }
+}
+
+@keyframes bounceEmoji {
+
+  0%,
+  100% {
+    transform: translateY(-50%) scale(1);
+  }
+
+  50% {
+    transform: translateY(-60%) scale(1.1);
+  }
+}
+
+@keyframes flicker {
+
+  0%,
+  100% {
+    text-shadow:
+      0 -1px 3px $flicker-white,
+      0 -2px 6px $flicker-yellow,
+      0 -4px 8px $flicker-orange,
+      0 -6px 12px $flicker-orange-dark,
+      0 -8px 16px $flicker-yellow,
+      0 -10px 20px $flicker-red-dark,
+      0 -12px 24px #CC0000;
+  }
+
+  25% {
+    text-shadow:
+      0 -2px 4px $flicker-white,
+      0 -3px 8px $flicker-yellow,
+      0 -5px 10px $flicker-orange,
+      0 -7px 14px $flicker-orange-dark,
+      0 -9px 18px $flicker-yellow,
+      0 -11px 22px $flicker-red-dark,
+      0 -13px 26px #CC0000;
+  }
+
+  50% {
+    text-shadow:
+      0 -2px 6px $flicker-white,
+      0 -4px 12px $flicker-yellow,
+      0 -6px 14px $flicker-orange,
+      0 -8px 16px $flicker-orange-dark,
+      0 -10px 20px $flicker-yellow,
+      0 -12px 24px $flicker-red-dark,
+      0 -14px 28px #CC0000;
+  }
+
+  75% {
+    text-shadow:
+      0 -3px 5px $flicker-white,
+      0 -5px 10px $flicker-yellow,
+      0 -7px 12px $flicker-orange,
+      0 -9px 18px $flicker-orange-dark,
+      0 -11px 22px $flicker-yellow,
+      0 -13px 26px $flicker-red-dark,
+      0 -15px 30px #CC0000;
+  }
+}
+
+
+.register-header {
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .animated-title {
+      margin: 0;
+      font-size: 3.5rem;
+      font-weight: 900;
+      font-family: 'Courier New', Courier, monospace;
+      color: $primary-red;
+      text-shadow:
+        0px -1px 3px $flicker-white,
+        0px -2px 6px $flicker-yellow,
+        0px -4px 8px $flicker-orange,
+        0px -6px 12px $flicker-orange-dark,
+        0px -8px 16px $flicker-yellow,
+        0px -10px 20px $flicker-red-dark,
+        0px -12px 24px #CC0000;
+      position: relative;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: flicker 2s infinite;
+
+      &::before {
+        content: '🍕';
+        position: absolute;
+        left: -70px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 3rem;
+        z-index: 100;
+        display: block;
+        filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.8));
+        animation: bounceEmoji 2s ease-in-out infinite;
+      }
+
+      &::after {
+        content: '🍔';
+        position: absolute;
+        right: -70px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 3rem;
+        z-index: 100;
+        display: block;
+        filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.8));
+        animation: bounceEmoji 2s ease-in-out infinite 1s;
+      }
     }
-    to {
-      opacity: 1;
+
+    .oo-animation {
+      display: inline-block;
+      animation: ooBounce 2s ease-in-out infinite;
+      transform-origin: center;
+      background: linear-gradient(45deg, #ff6b35, #f7931e, #ffd23f, #06ffa5, #3a86ff);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      // -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
+      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+    }
+  }
+
+  .welcome-text {
+    margin: 0;
+    font-size: 1rem;
+    opacity: 0.9;
+  }
+}
+
+::ng-deep .register-card .p-card-body {
+  padding: 1rem;
+  background-color: black;
+}
+
+.register-form {
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .form-input {
+      width: 100%;
+      border-radius: 10px;
+      border: 2px solid #e1e5e9;
+      padding: 12px 16px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+
+      &:focus {
+        border-color: $background-black;
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+        outline: none;
+      }
+
+      &.p-invalid {
+        border-color: #e74c3c;
+      }
+    }
+
+    .p-error {
+      color: #e74c3c;
+      font-size: 0.8rem;
+      margin-top: 0.25rem;
+      display: block;
+    }
+  }
+
+  .form-options {
+    margin-bottom: 1.5rem;
+
+    .terms-checkbox,
+    .newsletter-checkbox {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+
+      .checkbox-label {
+        font-size: 0.9rem;
+        color: #666;
+        cursor: pointer;
+        line-height: 1.4;
+
+        .terms-link {
+          color: #1e40af;
+          text-decoration: none;
+          font-weight: 500;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: #1e3a8a;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  .register-button {
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #5d9655, #224b0e, $background-medium-gray);
+    border: none;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: $text-white;
+    outline: none;
+
+    i {
+      font-size: 1rem;
+    }
+
+    span {
+      font-weight: 600;
+    }
+
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    &:active:not(:disabled) {
       transform: translateY(0);
     }
-  }
-  
-    .register-card {
-      border-radius: 20px;
-      box-shadow: 
-        0 20px 40px $shadow-black-light,
-        0 0 0 1px $overlay-white-medium,
-        inset 0 1px 0 $overlay-white-semi;
-      border: none;
-      overflow: hidden;
-      background: 
-        linear-gradient(135deg, $background-card-gradient-start 0%, $background-card-gradient-end 100%);
-      backdrop-filter: blur(20px);
-      position: relative;
-      
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(90deg, 
-          transparent 0%, 
-          $overlay-white-heavy 50%, 
-          transparent 100%);
-        z-index: 1;
-      }
-    }
-  
-      ::ng-deep .register-card .p-card-header {
-        background: linear-gradient(135deg, $background-dark-gray, $background-medium-gray, $background-black);
-        color: $text-white;
-        padding: 1rem;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-      }
-  
-  @keyframes shimmer {
-    0% { left: -100%; }
-    100% { left: 100%; }
-  }
-  
-  @keyframes ooBounce {
-    0%, 100% {
-      transform: scale(1) translateY(0px) rotate(0deg);
-    }
-    25% {
-      transform: scale(1.2) translateY(-8px) rotate(-5deg);
-    }
-    50% {
-      transform: scale(0.9) translateY(-12px) rotate(0deg);
-    }
-    75% {
-      transform: scale(1.15) translateY(-6px) rotate(3deg);
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
     }
   }
 
-  @keyframes bounceEmoji {
-    0%, 100% {
-      transform: translateY(-50%) scale(1);
-    }
-    50% {
-      transform: translateY(-60%) scale(1.1);
-    }
+  .divider-text {
+    color: #999;
+    font-size: 0.9rem;
+    padding: 0 1rem;
+    background: $background-card-gradient-start;
   }
 
-  @keyframes flicker {
-    0%, 100% {
-      text-shadow:
-        0 -1px 3px $flicker-white,
-        0 -2px 6px $flicker-yellow,
-        0 -4px 8px $flicker-orange,
-        0 -6px 12px $flicker-orange-dark,
-        0 -8px 16px $flicker-yellow,
-        0 -10px 20px $flicker-red-dark,
-        0 -12px 24px #CC0000;
-    }
-    25% {
-      text-shadow:
-        0 -2px 4px $flicker-white,
-        0 -3px 8px $flicker-yellow,
-        0 -5px 10px $flicker-orange,
-        0 -7px 14px $flicker-orange-dark,
-        0 -9px 18px $flicker-yellow,
-        0 -11px 22px $flicker-red-dark,
-        0 -13px 26px #CC0000;
-    }
-    50% {
-      text-shadow:
-        0 -2px 6px $flicker-white,
-        0 -4px 12px $flicker-yellow,
-        0 -6px 14px $flicker-orange,
-        0 -8px 16px $flicker-orange-dark,
-        0 -10px 20px $flicker-yellow,
-        0 -12px 24px $flicker-red-dark,
-        0 -14px 28px #CC0000;
-    }
-    75% {
-      text-shadow:
-        0 -3px 5px $flicker-white,
-        0 -5px 10px $flicker-yellow,
-        0 -7px 12px $flicker-orange,
-        0 -9px 18px $flicker-orange-dark,
-        0 -11px 22px $flicker-yellow,
-        0 -13px 26px $flicker-red-dark,
-        0 -15px 30px #CC0000;
-    }
-  }
-  
-  
-  .register-header {
-      .logo {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-  
-        .animated-title {
-          margin: 0;
-          font-size: 3.5rem;
-          font-weight: 900;
-          font-family: 'Courier New', Courier, monospace;
-          color: $primary-red;
-          text-shadow:
-            0px -1px 3px $flicker-white,
-            0px -2px 6px $flicker-yellow,
-            0px -4px 8px $flicker-orange,
-            0px -6px 12px $flicker-orange-dark,
-            0px -8px 16px $flicker-yellow,
-            0px -10px 20px $flicker-red-dark,
-            0px -12px 24px #CC0000;
-          position: relative;
-          text-transform: uppercase;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          animation: flicker 2s infinite;
-          
-          &::before {
-            content: '🍕';
-            position: absolute;
-            left: -70px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 3rem;
-            z-index: 100;
-            display: block;
-            filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.8));
-            animation: bounceEmoji 2s ease-in-out infinite;
-          }
-          
-          &::after {
-            content: '🍔';
-            position: absolute;
-            right: -70px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 3rem;
-            z-index: 100;
-            display: block;
-            filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.8));
-            animation: bounceEmoji 2s ease-in-out infinite 1s;
-          }
-        }
-        
-        .oo-animation {
-          display: inline-block;
-          animation: ooBounce 2s ease-in-out infinite;
-          transform-origin: center;
-          background: linear-gradient(45deg, #ff6b35, #f7931e, #ffd23f, #06ffa5, #3a86ff);
-          background-size: 300% 300%;
-          -webkit-background-clip: text;
-          // -webkit-text-fill-color: transparent;
-          background-clip: text;
-          text-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
-          filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
-        }
-      }
-  
-    .welcome-text {
-      margin: 0;
-      font-size: 1rem;
-      opacity: 0.9;
-    }
-  }
-  
-  ::ng-deep .register-card .p-card-body {
-    padding: 1rem;
-    background-color: black;
-  }
-  
-  .register-form {
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-  
-      @media (max-width: 768px) {
-        grid-template-columns: 1fr;
-      }
-    }
-  
-    .form-group {
-      margin-bottom: 1.5rem;
-  
-          .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #666;
-            font-size: 0.9rem;
-          }
-  
-          .form-input {
-            width: 100%;
-            border-radius: 10px;
-            border: 2px solid #e1e5e9;
-            padding: 12px 16px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-  
-            &:focus {
-              border-color: $background-black;
-              box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
-              outline: none;
-            }
-  
-        &.p-invalid {
-          border-color: #e74c3c;
-        }
-      }
-  
-      .p-error {
-        color: #e74c3c;
-        font-size: 0.8rem;
-        margin-top: 0.25rem;
-        display: block;
-      }
-    }
-  
-    .form-options {
-      margin-bottom: 1.5rem;
-  
-      .terms-checkbox,
-      .newsletter-checkbox {
-        display: flex;
-        align-items: flex-start;
-        gap: 8px;
-  
-            .checkbox-label {
-              font-size: 0.9rem;
-              color: #666;
-              cursor: pointer;
-              line-height: 1.4;
-  
-          .terms-link {
-            color: #1e40af;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-  
-            &:hover {
-              color: #1e3a8a;
-              text-decoration: underline;
-            }
-          }
-        }
-      }
-    }
-  
-    .register-button {
+  .social-login {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+
+    .social-button {
       width: 100%;
       height: 50px;
       border-radius: 10px;
-      font-size: 1.1rem;
       font-weight: 600;
-      background: linear-gradient(135deg, #5d9655, #224b0e,$background-medium-gray);
-      border: none;
-      margin-bottom: 1.5rem;
+      border: 2px solid #e1e5e9;
+      background: $text-white;
+      color: #333;
       transition: all 0.3s ease;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      color: $text-white;
+      gap: 12px;
+      font-size: 1rem;
       outline: none;
-  
+
       i {
-        font-size: 1rem;
+        font-size: 1.2rem;
       }
-  
+
       span {
         font-weight: 600;
       }
-  
-      &:hover:not(:disabled) {
+
+      &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 5px 15px $shadow-black-light;
       }
-  
-      &:active:not(:disabled) {
+
+      &:active {
         transform: translateY(0);
       }
-  
-      &:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-        transform: none;
-      }
-    }
-  
-    .divider-text {
-      color: #999;
-      font-size: 0.9rem;
-      padding: 0 1rem;
-      background: $background-card-gradient-start;
-    }
-  
-    .social-login {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-  
-      .social-button {
-        width: 100%;
-        height: 50px;
-        border-radius: 10px;
-        font-weight: 600;
-        border: 2px solid #e1e5e9;
-        background: $text-white;
-        color: #333;
-        transition: all 0.3s ease;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        font-size: 1rem;
-        outline: none;
-  
-        i {
-          font-size: 1.2rem;
-        }
-  
-        span {
-          font-weight: 600;
-        }
-  
+
+      &.google-button {
         &:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 5px 15px $shadow-black-light;
-        }
-  
-        &:active {
-          transform: translateY(0);
-        }
-  
-        &.google-button {
-          &:hover {
-            border-color: #4285f4;
-            color: #4285f4;
-            background: #f8f9ff;
-          }
-        }
-  
-        &.apple-button {
-          &:hover {
-            border-color: #000;
-            color: #000;
-            background: #f5f5f5;
-          }
+          border-color: #4285f4;
+          color: #4285f4;
+          background: #f8f9ff;
         }
       }
-    }
-  
-    .signin-link {
-      text-align: center;
-  
-      p {
-        margin: 0;
-        color: #666;
-        font-size: 0.9rem;
-      }
-  
-      .link {
-        color: #1e40af;
-        text-decoration: none;
-        font-weight: 600;
-        transition: color 0.3s ease;
-  
+
+      &.apple-button {
         &:hover {
-          color: #1e3a8a;
-          text-decoration: underline;
+          border-color: #000;
+          color: #000;
+          background: #f5f5f5;
         }
       }
     }
   }
-  
-  // Mobile-first responsive design using Bootstrap breakpoints
-  @import '../../../../../styles/mixin';
 
-  // Base styles (mobile-first) - xs breakpoint (0px+)
+  .signin-link {
+    text-align: center;
+
+    p {
+      margin: 0;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .link {
+      color: #1e40af;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #1e3a8a;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// Mobile-first responsive design using Bootstrap breakpoints
+@import '../../../../../styles/mixin';
+
+// Base styles (mobile-first) - xs breakpoint (0px+)
+.register-container {
+  justify-content: center;
+  // padding: 15px;
+}
+
+.register-content {
+  max-width: 100%;
+  // padding: 10px;
+}
+
+.register-header {
+  .logo {
+    .animated-title {
+      font-size: 2rem;
+      letter-spacing: 1px;
+
+      &::before {
+        left: -30px;
+        font-size: 1.2rem;
+      }
+
+      &::after {
+        right: -30px;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+::ng-deep .register-card .p-card-header {
+  padding: 0.6rem 0.4rem;
+}
+
+::ng-deep .register-card .p-card-body {
+  padding: 0.6rem;
+}
+
+// Small devices (sm) - 576px+
+@include media-breakpoint-up(sm) {
   .register-container {
-    justify-content: center;
-    // padding: 15px;
+    padding: 20px;
   }
 
   .register-content {
-    max-width: 100%;
-    // padding: 10px;
+    padding: 10px;
   }
 
   .register-header {
     .logo {
       .animated-title {
-        font-size: 2rem;
-        letter-spacing: 1px;
-        
+        font-size: 3rem;
+        letter-spacing: 2px;
+
         &::before {
-          left: -30px;
-          font-size: 1.2rem;
+          left: -40px;
+          font-size: 1.8rem;
         }
-        
+
         &::after {
-          right: -30px;
-          font-size: 1.2rem;
+          right: -40px;
+          font-size: 1.8rem;
         }
       }
     }
   }
 
   ::ng-deep .register-card .p-card-header {
-    padding: 0.6rem 0.4rem;
+    padding: 1rem 0.5rem;
   }
-  
+
   ::ng-deep .register-card .p-card-body {
-    padding: 0.6rem;
+    padding: 1rem;
+  }
+}
+
+// Medium devices (md) - 768px+
+@include media-breakpoint-up(md) {
+  .register-container {
+    justify-content: flex-start;
+    // padding: 30px;
   }
 
-  // Small devices (sm) - 576px+
-  @include media-breakpoint-up(sm) {
-    .register-container {
-      padding: 20px;
-    }
+  .register-content {
+    max-width: 55%;
+  }
 
-    .register-content {
-      padding: 10px;
-    }
+  .register-header {
+    .logo {
+      .animated-title {
+        font-size: 4rem;
 
-    .register-header {
-      .logo {
-        .animated-title {
+        &::before {
+          left: -60px;
+          font-size: 2.5rem;
+        }
+
+        &::after {
+          right: -60px;
+          font-size: 2.5rem;
+        }
+      }
+    }
+  }
+
+  ::ng-deep .register-card .p-card-header {
+    padding: 1rem;
+  }
+
+  ::ng-deep .register-card .p-card-body {
+    padding: 1.5rem;
+  }
+}
+
+// Large devices (lg) - 992px+
+@include media-breakpoint-up(lg) {
+  .register-container {
+    padding-left: 50px;
+  }
+
+  .register-content {
+    max-width: 45%;
+  }
+
+  .register-header {
+    .logo {
+      .animated-title {
+        font-size: 3.5rem;
+
+        &::before {
+          left: -70px;
           font-size: 3rem;
-          letter-spacing: 2px;
-          
-          &::before {
-            left: -40px;
-            font-size: 1.8rem;
-          }
-          
-          &::after {
-            right: -40px;
-            font-size: 1.8rem;
-          }
         }
-      }
-    }
 
-    ::ng-deep .register-card .p-card-header {
-      padding: 1rem 0.5rem;
-    }
-    
-    ::ng-deep .register-card .p-card-body {
-      padding: 1rem;
-    }
-  }
-
-  // Medium devices (md) - 768px+
-  @include media-breakpoint-up(md) {
-    .register-container {
-      justify-content: flex-start;
-      // padding: 30px;
-    }
-
-    .register-content {
-      max-width: 55%;
-    }
-
-    .register-header {
-      .logo {
-        .animated-title {
-          font-size: 4rem;
-          
-          &::before {
-            left: -60px;
-            font-size: 2.5rem;
-          }
-          
-          &::after {
-            right: -60px;
-            font-size: 2.5rem;
-          }
-        }
-      }
-    }
-
-    ::ng-deep .register-card .p-card-header {
-      padding: 1rem;
-    }
-    
-    ::ng-deep .register-card .p-card-body {
-      padding: 1.5rem;
-    }
-  }
-
-  // Large devices (lg) - 992px+
-  @include media-breakpoint-up(lg) {
-    .register-container {
-      padding-left: 50px;
-    }
-
-    .register-content {
-      max-width: 45%;
-    }
-
-    .register-header {
-      .logo {
-        .animated-title {
-          font-size: 3.5rem;
-          
-          &::before {
-            left: -70px;
-            font-size: 3rem;
-          }
-          
-          &::after {
-            right: -70px;
-            font-size: 3rem;
-          }
+        &::after {
+          right: -70px;
+          font-size: 3rem;
         }
       }
     }
   }
+}
 
-  // Extra large devices (xl) - 1200px+
-  @include media-breakpoint-up(xl) {
-    .register-content {
-      max-width: 42%;
-    }
+// Extra large devices (xl) - 1200px+
+@include media-breakpoint-up(xl) {
+  .register-content {
+    max-width: 42%;
   }
+}
 
-  // Extra extra large devices (xxl) - 1400px+
-  @include media-breakpoint-up(xxl) {
-    .register-content {
-      max-width: 35%;
-    }
+// Extra extra large devices (xxl) - 1400px+
+@include media-breakpoint-up(xxl) {
+  .register-content {
+    max-width: 35%;
   }
-  
-  // PrimeNG component customizations
-  ::ng-deep .p-password {
+}
+
+// PrimeNG component customizations
+::ng-deep .p-password {
+  width: 100%;
+
+  .p-password-input {
     width: 100%;
-  
-    .p-password-input {
-      width: 100%;
-      border-radius: 10px;
-      border: 2px solid #e1e5e9;
-      padding: 12px 16px;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-  
-      &:focus {
-        border-color: $background-black;
-        box-shadow: 0 0 0 3px $shadow-black-light;
-        outline: none;
-      }
-    }
-  
-    .p-password-toggle {
-      color: #999;
-      transition: color 0.3s ease;
-  
-      &:hover {
-        color: $background-black;
-      }
-    }
-  
-    .p-password-panel {
-      border-radius: 10px;
-      border: 2px solid #e1e5e9;
-      box-shadow: 0 4px 12px $shadow-black-light;
-    }
-  }
-  
-  ::ng-deep .p-calendar {
-    width: 100%;
-  
-    .p-inputtext {
-      width: 100%;
-      border-radius: 10px;
-      border: 2px solid #e1e5e9;
-      padding: 12px 16px;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-  
-      &:focus {
-        border-color: $background-black;
-        box-shadow: 0 0 0 3px $shadow-black-light;
-        outline: none;
-      }
-    }
-  
-    .p-datepicker-trigger {
-      color: #999;
-      transition: color 0.3s ease;
-  
-      &:hover {
-        color: $background-black;
-      }
-    }
-  }
-  
-  ::ng-deep .p-checkbox .p-checkbox-box {
-    border-radius: 6px;
+    border-radius: 10px;
     border: 2px solid #e1e5e9;
+    padding: 12px 16px;
+    font-size: 1rem;
     transition: all 0.3s ease;
-  
-    &.p-highlight {
-      background: $background-black;
-        border-color: $background-black;
+
+    &:focus {
+      border-color: $background-black;
+      box-shadow: 0 0 0 3px $shadow-black-light;
+      outline: none;
     }
   }
-  
-  ::ng-deep .p-divider.p-divider-horizontal {
-    margin: 1.5rem 0;
-    border-color: #e1e5e9;
+
+  .p-password-toggle {
+    color: #999;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $background-black;
+    }
   }
-  
-  // Password strength indicator
-  ::ng-deep .p-password-meter {
-    background: #e1e5e9;
+
+  .p-password-panel {
+    border-radius: 10px;
+    border: 2px solid #e1e5e9;
+    box-shadow: 0 4px 12px $shadow-black-light;
+  }
+}
+
+::ng-deep .p-calendar {
+  width: 100%;
+
+  .p-inputtext {
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid #e1e5e9;
+    padding: 12px 16px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+
+    &:focus {
+      border-color: $background-black;
+      box-shadow: 0 0 0 3px $shadow-black-light;
+      outline: none;
+    }
+  }
+
+  .p-datepicker-trigger {
+    color: #999;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $background-black;
+    }
+  }
+}
+
+::ng-deep .p-checkbox .p-checkbox-box {
+  border-radius: 6px;
+  border: 2px solid #e1e5e9;
+  transition: all 0.3s ease;
+
+  &.p-highlight {
+    background: $background-black;
+    border-color: $background-black;
+  }
+}
+
+::ng-deep .p-divider.p-divider-horizontal {
+  margin: 1.5rem 0;
+  border-color: #e1e5e9;
+}
+
+// Password strength indicator
+::ng-deep .p-password-meter {
+  background: #e1e5e9;
+  border-radius: 4px;
+  height: 4px;
+  margin-top: 0.5rem;
+
+  .p-password-strength {
+    height: 100%;
     border-radius: 4px;
-    height: 4px;
-    margin-top: 0.5rem;
-  
-    .p-password-strength {
-      height: 100%;
-      border-radius: 4px;
-      transition: all 0.3s ease;
-  
-      &.weak {
-        background: #e74c3c;
-        width: 25%;
-      }
-  
-      &.medium {
-        background: #f39c12;
-        width: 50%;
-      }
-  
-      &.strong {
-        background: #27ae60;
-        width: 75%;
-      }
-  
-      &.very-strong {
-        background: #2ecc71;
-        width: 100%;
-      }
+    transition: all 0.3s ease;
+
+    &.weak {
+      background: #e74c3c;
+      width: 25%;
+    }
+
+    &.medium {
+      background: #f39c12;
+      width: 50%;
+    }
+
+    &.strong {
+      background: #27ae60;
+      width: 75%;
+    }
+
+    &.very-strong {
+      background: #2ecc71;
+      width: 100%;
     }
   }
-  
+}
