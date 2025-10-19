@@ -11,6 +11,7 @@ export class MenuItemDetailsComponent implements OnInit {
     @Input() menuItem: any = null;
     isInCart: boolean = false;
     cartItemCount: number = 0;
+    isProvider: boolean = false;
 
     // Sample detailed menu item data
     sampleMenuItem = {
@@ -96,6 +97,10 @@ export class MenuItemDetailsComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        // Determine user role based on current URL
+        const currentUrl = this.router.url;
+        this.isProvider = currentUrl.includes('/provider/');
+
         // Get item ID from route parameters
         const itemId = this.route.snapshot.paramMap.get('id');
 
@@ -122,8 +127,10 @@ export class MenuItemDetailsComponent implements OnInit {
             this.menuItem = this.sampleMenuItem;
         }
 
-        // Check if item is in cart and update button state
-        this.checkCartStatus();
+        // Check if item is in cart and update button state (only for consumers)
+        if (!this.isProvider) {
+            this.checkCartStatus();
+        }
     }
 
     enhanceMenuItemWithDetails(item: any): any {
@@ -508,7 +515,16 @@ export class MenuItemDetailsComponent implements OnInit {
     }
 
     goBack(): void {
-        this.router.navigate(['/consumer/dashboard']);
+        // Determine user role based on current URL
+        const currentUrl = this.router.url;
+        const isProvider = currentUrl.includes('/provider/');
+        const isConsumer = currentUrl.includes('/consumer/');
+
+        // Set the base route based on user role
+        const baseRoute = isProvider ? '/provider' : isConsumer ? '/consumer' : '/consumer';
+
+        // Navigate back to dashboard based on user role
+        this.router.navigate([`${baseRoute}/dashboard`]);
     }
 
     addToCart(): void {
@@ -518,7 +534,19 @@ export class MenuItemDetailsComponent implements OnInit {
     }
 
     viewCart(): void {
-        this.router.navigate(['/consumer/cart']);
+        // Determine user role based on current URL
+        const currentUrl = this.router.url;
+        const isProvider = currentUrl.includes('/provider/');
+        const isConsumer = currentUrl.includes('/consumer/');
+
+        if (isProvider) {
+            // Providers don't have a cart, redirect to dashboard
+            this.router.navigate(['/provider/dashboard']);
+        } else {
+            // Consumers can view their cart
+            const baseRoute = isConsumer ? '/consumer' : '/consumer';
+            this.router.navigate([`${baseRoute}/cart`]);
+        }
     }
 
     checkCartStatus(): void {

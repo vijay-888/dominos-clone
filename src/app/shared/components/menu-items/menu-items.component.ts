@@ -261,8 +261,16 @@ export class MenuItemsComponent implements OnInit {
   }
 
   viewDetails(item: any): void {
+    // Determine user role based on current URL
+    const currentUrl = this.router.url;
+    const isProvider = currentUrl.includes('/provider/');
+    const isConsumer = currentUrl.includes('/consumer/');
+
+    // Set the base route based on user role
+    const baseRoute = isProvider ? '/provider' : isConsumer ? '/consumer' : '/consumer';
+
     // Navigate to menu item details page with complete item data as route parameters
-    this.router.navigate(['/consumer/menu-item', item.id], {
+    this.router.navigate([`${baseRoute}/menu-item`, item.id], {
       queryParams: {
         name: encodeURIComponent(item.name),
         description: encodeURIComponent(item.description),

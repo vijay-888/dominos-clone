@@ -111,15 +111,15 @@
 
           <!-- Action Buttons -->
           <div class="action-buttons">
-            <button class="btn-primary" *ngIf="!isInCart" (click)="addToCart()">
+            <button class="btn-primary" *ngIf="!isInCart && !isProvider" (click)="addToCart()">
               <i class="pi pi-shopping-cart"></i>
               Add to Cart
             </button>
-            <button class="btn-primary" *ngIf="isInCart" (click)="viewCart()">
+            <button class="btn-primary" *ngIf="isInCart && !isProvider" (click)="viewCart()">
               <i class="pi pi-shopping-cart"></i>
               View in Cart ({{ cartItemCount }})
             </button>
-            <button class="btn-secondary" (click)="addToFavorites()">
+            <button class="btn-secondary" *ngIf="!isProvider" (click)="addToFavorites()">
               <i class="pi pi-heart"></i>
               Add to Favorites
             </button>

@@ -37,6 +37,8 @@ export class LoginComponent implements OnInit {
       // Simulate API call
       setTimeout(() => {
         this.isLoading = false;
+        const email = this.loginForm.get('email')?.value;
+
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
@@ -44,8 +46,14 @@ export class LoginComponent implements OnInit {
         });
         console.log('Login form submitted:', this.loginForm.value);
 
-        // Redirect to consumer dashboard
-        this.router.navigate(['/consumer/dashboard']);
+        // Role-based routing
+        if (email === 'vijay@gmail.com') {
+          // Redirect to provider dashboard
+          this.router.navigate(['/provider/dashboard']);
+        } else {
+          // Redirect to consumer dashboard
+          this.router.navigate(['/consumer/dashboard']);
+        }
       }, 2000);
     } else {
       this.markFormGroupTouched();

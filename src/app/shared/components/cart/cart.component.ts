@@ -13,6 +13,7 @@ export class CartComponent implements OnInit, OnDestroy {
   appliedPromo: PromoCode | null = null;
   promoCodeInput: string = '';
   promoMessage: { success: boolean; message: string } = { success: false, message: '' };
+  isProvider: boolean = false;
 
   // Payment modal
   showPaymentModal: boolean = false;
@@ -30,6 +31,10 @@ export class CartComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    // Determine user role based on current URL
+    const currentUrl = this.router.url;
+    this.isProvider = currentUrl.includes('/provider/');
+
     // Subscribe to cart items changes
     this.subscriptions.push(
       this.cartService.cartItems$.subscribe(items => {
@@ -164,7 +169,13 @@ export class CartComponent implements OnInit, OnDestroy {
   goToDashboard(): void {
     this.cartService.clearCart();
     this.showConfirmationModal = false;
-    this.router.navigate(['/consumer/dashboard']);
+
+    // Navigate based on user role
+    if (this.isProvider) {
+      this.router.navigate(['/provider/dashboard']);
+    } else {
+      this.router.navigate(['/consumer/dashboard']);
+    }
   }
 
   trackOrder(): void {

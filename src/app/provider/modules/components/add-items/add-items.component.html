@@ -1,0 +1,383 @@
+<div class="add-items-container">
+  <div class="form-header">
+    <h1>Add New Menu Item</h1>
+  </div>
+
+  <form [formGroup]="addItemForm" (ngSubmit)="onSubmit()" class="add-item-form">
+    <div class="form-row">
+      <!-- Left Column -->
+      <div class="form-column">
+        <!-- Basic Information Section -->
+        <div class="form-section">
+          <h2>Basic Information</h2>
+          
+          <div class="form-group">
+            <label for="name">Item Name *</label>
+            <input 
+              type="text" 
+              id="name" 
+              formControlName="name" 
+              placeholder="e.g., Margherita Pizza"
+              [class.invalid]="isFieldInvalid('name')"
+            >
+            <div class="error-message" *ngIf="isFieldInvalid('name')">
+              {{ getFieldError('name') }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Short Description *</label>
+            <textarea 
+              id="description" 
+              formControlName="description" 
+              placeholder="Brief description of the item"
+              rows="3"
+              [class.invalid]="isFieldInvalid('description')"
+            ></textarea>
+            <div class="error-message" *ngIf="isFieldInvalid('description')">
+              {{ getFieldError('description') }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="detailedDescription">Detailed Description *</label>
+            <textarea 
+              id="detailedDescription" 
+              formControlName="detailedDescription" 
+              placeholder="Detailed description with preparation method, taste, etc."
+              rows="4"
+              [class.invalid]="isFieldInvalid('detailedDescription')"
+            ></textarea>
+            <div class="error-message" *ngIf="isFieldInvalid('detailedDescription')">
+              {{ getFieldError('detailedDescription') }}
+            </div>
+          </div>
+
+          <div class="form-row-inline">
+            <div class="form-group">
+              <label for="price">Price ($) *</label>
+              <input 
+                type="number" 
+                id="price" 
+                formControlName="price" 
+                placeholder="12.99"
+                step="0.01"
+                min="0.01"
+                [class.invalid]="isFieldInvalid('price')"
+              >
+              <div class="error-message" *ngIf="isFieldInvalid('price')">
+                {{ getFieldError('price') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="category">Category *</label>
+              <select 
+                id="category" 
+                formControlName="category"
+                [class.invalid]="isFieldInvalid('category')"
+              >
+                <option value="">Select Category</option>
+                <option *ngFor="let category of categories" [value]="category.id">
+                  {{ category.name }}
+                </option>
+              </select>
+              <div class="error-message" *ngIf="isFieldInvalid('category')">
+                {{ getFieldError('category') }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row-inline">
+            <div class="form-group">
+              <label for="preparationTime">Preparation Time *</label>
+              <input 
+                type="text" 
+                id="preparationTime" 
+                formControlName="preparationTime" 
+                placeholder="e.g., 15-20 minutes"
+                [class.invalid]="isFieldInvalid('preparationTime')"
+              >
+              <div class="error-message" *ngIf="isFieldInvalid('preparationTime')">
+                {{ getFieldError('preparationTime') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="size">Size *</label>
+              <input 
+                type="text" 
+                id="size" 
+                formControlName="size" 
+                placeholder="e.g., 12 inches, Regular"
+                [class.invalid]="isFieldInvalid('size')"
+              >
+              <div class="error-message" *ngIf="isFieldInvalid('size')">
+                {{ getFieldError('size') }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="rating">Rating (0-5)</label>
+            <input 
+              type="number" 
+              id="rating" 
+              formControlName="rating" 
+              placeholder="4.0"
+              step="0.1"
+              min="0"
+              max="5"
+              [class.invalid]="isFieldInvalid('rating')"
+            >
+            <div class="error-message" *ngIf="isFieldInvalid('rating')">
+              {{ getFieldError('rating') }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Image Upload Section -->
+        <div class="form-section">
+          <h2>Item Image</h2>
+          
+          <div class="image-upload-group">
+            <div class="image-upload-area" [class.has-image]="imagePreview">
+              <input 
+                type="file" 
+                id="image" 
+                accept="image/*" 
+                (change)="onImageSelected($event)"
+                [class.invalid]="isFieldInvalid('image')"
+              >
+              <div class="upload-content" *ngIf="!imagePreview">
+                <i class="pi pi-cloud-upload"></i>
+                <p>Click to upload image or drag and drop</p>
+                <span class="upload-hint">PNG, JPG, JPEG up to 10MB</span>
+              </div>
+              <div class="image-preview" *ngIf="imagePreview">
+                <img [src]="imagePreview" alt="Preview">
+                <button type="button" class="remove-image" (click)="selectedImage = null; imagePreview = null; addItemForm.patchValue({image: null})">
+                  <i class="pi pi-times"></i>
+                </button>
+              </div>
+            </div>
+            <div class="error-message" *ngIf="isFieldInvalid('image')">
+              Please select an image
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div class="form-column">
+        <!-- Nutritional Information Section -->
+        <div class="form-section">
+          <h2>Nutritional Information</h2>
+          
+          <div class="nutrition-grid">
+            <div class="form-group">
+              <label for="calories">Calories *</label>
+              <input 
+                type="number" 
+                id="calories" 
+                formControlName="calories" 
+                placeholder="320"
+                min="0"
+                [class.invalid]="isFieldInvalid('calories')"
+              >
+              <div class="error-message" *ngIf="isFieldInvalid('calories')">
+                {{ getFieldError('calories') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="protein">Protein (g) *</label>
+              <input 
+                type="number" 
+                id="protein" 
+                formControlName="protein" 
+                placeholder="18"
+                min="0"
+                step="0.1"
+                [class.invalid]="isFieldInvalid('protein')"
+              >
+              <div class="error-message" *ngIf="isFieldInvalid('protein')">
+                {{ getFieldError('protein') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="carbs">Carbs (g) *</label>
+              <input 
+                type="number" 
+                id="carbs" 
+                formControlName="carbs" 
+                placeholder="35"
+                min="0"
+                step="0.1"
+                [class.invalid]="isFieldInvalid('carbs')"
+              >
+              <div class="error-message" *ngIf="isFieldInvalid('carbs')">
+                {{ getFieldError('carbs') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="fat">Fat (g) *</label>
+              <input 
+                type="number" 
+                id="fat" 
+                formControlName="fat" 
+                placeholder="12"
+                min="0"
+                step="0.1"
+                [class.invalid]="isFieldInvalid('fat')"
+              >
+              <div class="error-message" *ngIf="isFieldInvalid('fat')">
+                {{ getFieldError('fat') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="fiber">Fiber (g) *</label>
+              <input 
+                type="number" 
+                id="fiber" 
+                formControlName="fiber" 
+                placeholder="3"
+                min="0"
+                step="0.1"
+                [class.invalid]="isFieldInvalid('fiber')"
+              >
+              <div class="error-message" *ngIf="isFieldInvalid('fiber')">
+                {{ getFieldError('fiber') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="sodium">Sodium (mg) *</label>
+              <input 
+                type="number" 
+                id="sodium" 
+                formControlName="sodium" 
+                placeholder="680"
+                min="0"
+                [class.invalid]="isFieldInvalid('sodium')"
+              >
+              <div class="error-message" *ngIf="isFieldInvalid('sodium')">
+                {{ getFieldError('sodium') }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ingredients Section -->
+        <div class="form-section">
+          <h2>Ingredients</h2>
+          
+          <div class="form-group">
+            <label for="ingredients">Ingredients *</label>
+            <textarea 
+              id="ingredients" 
+              formControlName="ingredients" 
+              placeholder="Enter ingredients separated by commas (e.g., Mozzarella Cheese, Tomato Sauce, Basil)"
+              rows="4"
+              [class.invalid]="isFieldInvalid('ingredients')"
+            ></textarea>
+            <div class="form-hint">Separate each ingredient with a comma</div>
+            <div class="error-message" *ngIf="isFieldInvalid('ingredients')">
+              {{ getFieldError('ingredients') }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Allergens Section -->
+        <div class="form-section">
+          <h2>Allergens</h2>
+          
+          <div class="form-group">
+            <label>Select Allergens *</label>
+            <div class="allergens-grid">
+              <label class="checkbox-label" *ngFor="let allergen of allergens">
+                <input 
+                  type="checkbox" 
+                  [value]="allergen"
+                  (change)="onAllergenChange($event, allergen)"
+                >
+                <span class="checkbox-text">{{ allergen }}</span>
+              </label>
+            </div>
+            <div class="error-message" *ngIf="isFieldInvalid('allergens')">
+              Please select at least one allergen or "None"
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="form-actions">
+      <button 
+        type="submit" 
+        class="submit-btn"
+      >
+        <i class="pi pi-plus" *ngIf="!isSubmitting"></i>
+        <i class="pi pi-spinner pi-spin" *ngIf="isSubmitting"></i>
+        {{ isSubmitting ? 'Adding Item...' : 'Add Item' }}
+      </button>
+      
+      <button 
+        type="button" 
+        class="reset-btn"
+        (click)="resetForm()"
+        [disabled]="isSubmitting"
+      >
+        <i class="pi pi-refresh"></i>
+        Reset Form
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- Success Modal -->
+<div class="success-modal" *ngIf="showSuccessModal" (click)="closeSuccessModal()">
+  <div class="success-modal-content" (click)="$event.stopPropagation()">
+    <div class="success-header">
+      <i class="pi pi-check-circle success-icon"></i>
+      <h2>Item Submitted Successfully!</h2>
+    </div>
+    
+    <div class="success-body">
+      <p class="success-message">
+        Your menu item has been submitted successfully! 
+        <strong>Admin approval pending is required to publish</strong> the item to your menu.
+      </p>
+      
+      <div class="success-details">
+        <div class="detail-item">
+          <i class="pi pi-clock"></i>
+          <span>Status: Pending Approval</span>
+        </div>
+        <div class="detail-item">
+          <i class="pi pi-user"></i>
+          <span>Admin will review your submission</span>
+        </div>
+        <div class="detail-item">
+          <i class="pi pi-bell"></i>
+          <span>You'll be notified once approved</span>
+        </div>
+      </div>
+      
+      <div class="success-actions">
+        <button class="btn-primary" (click)="closeSuccessModal()">
+          <i class="pi pi-home"></i>
+          Back to Dashboard
+        </button>
+        <button class="btn-secondary" (click)="closeSuccessModalAndReset()">
+          <i class="pi pi-plus"></i>
+          Add Another Item
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

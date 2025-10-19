@@ -20,6 +20,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./consumer/modules/consumer-home/consumer-home.module').then(m => m.ConsumerHomeModule)
   },
+  {
+    path: 'provider',
+    loadChildren: () =>
+      import('./provider/modules/provider-home/provider-home.module').then(m => m.ProviderHomeModule)
+  },
   // { path: '**', redirectTo: '/login' }
 ];
 

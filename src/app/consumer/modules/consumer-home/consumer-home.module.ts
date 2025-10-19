@@ -27,6 +27,10 @@ import { CartComponent } from '../../../shared/components/cart/cart.component';
     FormsModule,
     ConsumerHomeRoutingModule,
     CardModule
+  ],
+  exports: [
+    MenuItemsComponent,
+    MenuItemDetailsComponent
   ]
 })
 export class ConsumerHomeModule { }

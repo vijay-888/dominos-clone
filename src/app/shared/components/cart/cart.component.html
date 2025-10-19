@@ -16,7 +16,7 @@
       <i class="pi pi-shopping-cart empty-cart-icon"></i>
       <h2>Your cart is empty</h2>
       <p>Looks like you haven't added any items to your cart yet.</p>
-      <button class="btn-primary" routerLink="/consumer/dashboard">
+      <button class="btn-primary" [routerLink]="isProvider ? '/provider/dashboard' : '/consumer/dashboard'">
         <i class="pi pi-arrow-left"></i>
         Continue Shopping
       </button>
@@ -132,7 +132,7 @@
           </button>
           
           <!-- Continue Shopping -->
-          <button class="continue-shopping-btn" routerLink="/consumer/dashboard">
+          <button class="continue-shopping-btn" [routerLink]="isProvider ? '/provider/dashboard' : '/consumer/dashboard'">
             <i class="pi pi-arrow-left"></i>
             Continue Shopping
           </button>
