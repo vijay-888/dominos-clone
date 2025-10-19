@@ -1,0 +1,70 @@
+<div class="admin-dashboard">
+  <div class="dashboard-header">
+    <h1>{{ getPageTitle() }}</h1>
+    <p>{{ getPageContent() }}</p>
+  </div>
+  
+  <div class="dashboard-content" *ngIf="currentPage === 'dashboard'">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>Total Users</h3>
+        <p class="stat-number">1,234</p>
+      </div>
+      <div class="stat-card">
+        <h3>Total Orders</h3>
+        <p class="stat-number">5,678</p>
+      </div>
+      <div class="stat-card">
+        <h3>Revenue</h3>
+        <p class="stat-number">$12,345</p>
+      </div>
+      <div class="stat-card">
+        <h3>Active Providers</h3>
+        <p class="stat-number">89</p>
+      </div>
+    </div>
+    
+    <div class="admin-actions">
+      <h2>Quick Actions</h2>
+      <div class="action-buttons">
+        <button class="action-btn" (click)="navigateToManageUsers()">
+          <i class="pi pi-users"></i>
+          Manage Users
+        </button>
+        <button class="action-btn" (click)="navigateToViewOrders()">
+          <i class="pi pi-shopping-cart"></i>
+          View Orders
+        </button>
+        <button class="action-btn" (click)="navigateToManageItems()">
+          <i class="pi pi-box"></i>
+          Manage Items
+        </button>
+        <button class="action-btn" (click)="navigateToRoleRequests()">
+          <i class="pi pi-user-plus"></i>
+          Role Requests
+        </button>
+        <!-- <button class="action-btn" (click)="navigateToAnalytics()">
+          <i class="pi pi-chart-bar"></i>
+          Analytics
+        </button>
+        <button class="action-btn" (click)="navigateToSettings()">
+          <i class="pi pi-cog"></i>
+          Settings
+        </button> -->
+      </div>
+    </div>
+  </div>
+  
+  <!-- Placeholder content for other pages -->
+  <div class="placeholder-content" *ngIf="currentPage !== 'dashboard'">
+    <div class="placeholder-card">
+      <i class="pi pi-cog placeholder-icon"></i>
+      <h2>{{ getPageTitle() }}</h2>
+      <p>{{ getPageContent() }}</p>
+      <button class="back-btn" (click)="backToDashboard()">
+        <i class="pi pi-arrow-left"></i>
+        Back to Dashboard
+      </button>
+    </div>
+  </div>
+</div>

@@ -25,6 +25,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./provider/modules/provider-home/provider-home.module').then(m => m.ProviderHomeModule)
   },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./admin/modules/admin-home/admin-home.module').then(m => m.AdminHomeModule)
+  },
   // { path: '**', redirectTo: '/login' }
 ];
 

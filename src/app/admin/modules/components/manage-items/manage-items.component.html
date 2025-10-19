@@ -1,0 +1,230 @@
+<div class="manage-items-container">
+  <!-- Header Section -->
+  <div class="page-header">
+    <div class="header-content">
+      <h1>Manage Items</h1>
+      <p>Review and manage all menu items from providers</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-primary" (click)="refreshItems()">
+        <i class="pi pi-refresh"></i>
+        Refresh Items
+      </button>
+    </div>
+  </div>
+
+  <!-- Statistics Cards -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon total">
+        <i class="pi pi-box"></i>
+      </div>
+      <div class="stat-content">
+        <h3>{{ getTotalItems() }}</h3>
+        <p>Total Items</p>
+      </div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-icon published">
+        <i class="pi pi-check-circle"></i>
+      </div>
+      <div class="stat-content">
+        <h3>{{ getApprovedItems() }}</h3>
+        <p>Approved</p>
+      </div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-icon pending">
+        <i class="pi pi-clock"></i>
+      </div>
+      <div class="stat-content">
+        <h3>{{ getPendingItems() }}</h3>
+        <p>Pending Review</p>
+      </div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-icon draft">
+        <i class="pi pi-times-circle"></i>
+      </div>
+      <div class="stat-content">
+        <h3>{{ getRejectedItems() }}</h3>
+        <p>Rejected</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Items Table -->
+  <div class="table-container">
+    <p-table 
+      [value]="items" 
+      [loading]="loading"
+      [paginator]="true" 
+      [rows]="10"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} items"
+      [rowsPerPageOptions]="[5,10,25]"
+      styleClass="p-datatable-sm"
+      [tableStyle]="{'min-width': '50rem'}"
+      selectionMode="multiple"
+      [(selection)]="selectedItems"
+      dataKey="id">
+      
+      <!-- Table Header -->
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 3rem">
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th>
+          <th>Item</th>
+          <th>Provider</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Status</th>
+          <th>Rating</th>
+          <th>Orders</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+
+      <!-- Table Body -->
+      <ng-template pTemplate="body" let-item>
+        <tr>
+          <td>
+            <p-tableCheckbox [value]="item"></p-tableCheckbox>
+          </td>
+          
+          <!-- Item Column -->
+          <td>
+            <div class="item-info">
+              <img [src]="item.image" [alt]="item.name" class="item-image" 
+                   (error)="onImageError($event)">
+              <div class="item-details">
+                <h4 class="item-name">{{ item.name }}</h4>
+                <p class="item-description">{{ item.description }}</p>
+              </div>
+            </div>
+          </td>
+          
+          <!-- Provider Column -->
+          <td>
+            <div class="provider-info">
+              <span class="provider-name">{{ item.providerName }}</span>
+              <span class="provider-email">{{ item.providerEmail }}</span>
+            </div>
+          </td>
+          
+          <!-- Category Column -->
+          <td>
+            <span class="category-badge">{{ item.category }}</span>
+          </td>
+          
+          <!-- Price Column -->
+          <td>
+            <span class="price">{{ item.price }}</span>
+          </td>
+          
+          <!-- Status Column -->
+          <td>
+            <p-tag 
+              [value]="item.status" 
+              [severity]="getStatusSeverity(item.status)"
+              [icon]="getStatusIcon(item.status)">
+            </p-tag>
+          </td>
+          
+          <!-- Rating Column -->
+          <td>
+            <div class="rating" *ngIf="item.rating > 0; else noRating">
+              <i class="pi pi-star-fill"></i>
+              <span>{{ item.rating }}</span>
+            </div>
+            <ng-template #noRating>
+              <span class="no-rating">No ratings</span>
+            </ng-template>
+          </td>
+          
+          <!-- Orders Column -->
+          <td>
+            <span class="orders-count">{{ item.orders }}</span>
+          </td>
+          
+          <!-- Actions Column -->
+          <td>
+            <div class="action-buttons">
+              <button 
+                class="action-btn view" 
+                (click)="viewItem(item)"
+                pTooltip="View Details"
+                tooltipPosition="top">
+                <i class="pi pi-eye"></i>
+              </button>
+              
+              <button 
+                class="action-btn approve" 
+                (click)="approveItem(item)"
+                pTooltip="Approve Item"
+                tooltipPosition="top"
+                *ngIf="item.status === 'Pending Review'">
+                <i class="pi pi-check"></i>
+              </button>
+              
+              <button 
+                class="action-btn reject" 
+                (click)="rejectItem(item)"
+                pTooltip="Reject Item"
+                tooltipPosition="top"
+                *ngIf="item.status === 'Pending Review'">
+                <i class="pi pi-times"></i>
+              </button>
+              
+              <button 
+                class="action-btn delete" 
+                (click)="deleteItem(item)"
+                pTooltip="Delete Item"
+                tooltipPosition="top">
+                <i class="pi pi-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+
+      <!-- Empty State -->
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="9" class="empty-state">
+            <div class="empty-content">
+              <i class="pi pi-box empty-icon"></i>
+              <h3>No items found</h3>
+              <p>There are no menu items to review at the moment.</p>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <!-- Bulk Actions -->
+  <div class="bulk-actions" *ngIf="selectedItems.length > 0">
+    <div class="bulk-info">
+      <span>{{ selectedItems.length }} item(s) selected</span>
+    </div>
+    <div class="bulk-buttons">
+      <button class="btn-secondary" (click)="selectedItems = []">
+        <i class="pi pi-times"></i>
+        Clear Selection
+      </button>
+      <button class="btn-success" (click)="approveSelectedItems()">
+        <i class="pi pi-check"></i>
+        Approve Selected
+      </button>
+      <button class="btn-danger" (click)="rejectSelectedItems()">
+        <i class="pi pi-times"></i>
+        Reject Selected
+      </button>
+    </div>
+  </div>
+</div>

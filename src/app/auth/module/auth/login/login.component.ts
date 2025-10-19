@@ -47,7 +47,10 @@ export class LoginComponent implements OnInit {
         console.log('Login form submitted:', this.loginForm.value);
 
         // Role-based routing
-        if (email === 'vijay@gmail.com') {
+        if (email === 'coyaja8206@asimarif.com') {
+          // Redirect to admin dashboard
+          this.router.navigate(['/admin/dashboard']);
+        } else if (email === 'vijay@gmail.com') {
           // Redirect to provider dashboard
           this.router.navigate(['/provider/dashboard']);
         } else {

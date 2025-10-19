@@ -1,0 +1,216 @@
+<div class="manage-role-requests-container">
+  <!-- Header Section -->
+  <div class="page-header">
+    <div class="header-content">
+      <h1>Manage Role Requests</h1>
+      <p>Review and approve role change requests from users</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-primary" (click)="refreshRequests()">
+        <i class="pi pi-refresh"></i>
+        Refresh Requests
+      </button>
+    </div>
+  </div>
+
+  <!-- Statistics Cards -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon total">
+        <i class="pi pi-users"></i>
+      </div>
+      <div class="stat-content">
+        <h3>{{ getTotalRequests() }}</h3>
+        <p>Total Requests</p>
+      </div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-icon published">
+        <i class="pi pi-clock"></i>
+      </div>
+      <div class="stat-content">
+        <h3>{{ getPendingRequests() }}</h3>
+        <p>Pending Review</p>
+      </div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-icon pending">
+        <i class="pi pi-check-circle"></i>
+      </div>
+      <div class="stat-content">
+        <h3>{{ getApprovedRequests() }}</h3>
+        <p>Approved</p>
+      </div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-icon draft">
+        <i class="pi pi-times-circle"></i>
+      </div>
+      <div class="stat-content">
+        <h3>{{ getRejectedRequests() }}</h3>
+        <p>Rejected</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Requests Table -->
+  <div class="table-container">
+    <p-table 
+      [value]="requests" 
+      [loading]="loading"
+      [paginator]="true" 
+      [rows]="10"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} requests"
+      [rowsPerPageOptions]="[5,10,25]"
+      styleClass="p-datatable-sm"
+      [tableStyle]="{'min-width': '50rem'}"
+      selectionMode="multiple"
+      [(selection)]="selectedRequests"
+      dataKey="id">
+      
+      <!-- Table Header -->
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 3rem">
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th>
+          <th>User</th>
+          <th>Current Role</th>
+          <th>Requested Role</th>
+          <th>Reason</th>
+          <th>Status</th>
+          <th>Requested Date</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+
+      <!-- Table Body -->
+      <ng-template pTemplate="body" let-request>
+        <tr>
+          <td>
+            <p-tableCheckbox [value]="request"></p-tableCheckbox>
+          </td>
+          
+          <!-- User Column -->
+          <td>
+            <div class="user-info">
+              <div class="user-avatar">
+                <i class="pi pi-user"></i>
+              </div>
+              <div class="user-details">
+                <h4 class="user-name">{{ request.userName }}</h4>
+                <p class="user-email">{{ request.userEmail }}</p>
+              </div>
+            </div>
+          </td>
+          
+          <!-- Current Role Column -->
+          <td>
+            <span class="role-badge current">{{ request.currentRole }}</span>
+          </td>
+          
+          <!-- Requested Role Column -->
+          <td>
+            <span class="role-badge requested">{{ request.requestedRole }}</span>
+          </td>
+          
+          <!-- Reason Column -->
+          <td>
+            <p class="reason-text">{{ request.reason }}</p>
+          </td>
+          
+          <!-- Status Column -->
+          <td>
+            <p-tag 
+              [value]="request.status" 
+              [severity]="getStatusSeverity(request.status)"
+              [icon]="getStatusIcon(request.status)">
+            </p-tag>
+          </td>
+          
+          <!-- Requested Date Column -->
+          <td>
+            <span class="date">{{ request.requestedDate | date:'MMM dd, yyyy' }}</span>
+          </td>
+          
+          <!-- Actions Column -->
+          <td>
+            <div class="action-buttons">
+              <button 
+                class="action-btn view" 
+                (click)="viewRequest(request)"
+                pTooltip="View Details"
+                tooltipPosition="top">
+                <i class="pi pi-eye"></i>
+              </button>
+              
+              <button 
+                class="action-btn approve" 
+                (click)="approveRequest(request)"
+                pTooltip="Approve Request"
+                tooltipPosition="top"
+                *ngIf="request.status === 'Pending'">
+                <i class="pi pi-check"></i>
+              </button>
+              
+              <button 
+                class="action-btn reject" 
+                (click)="rejectRequest(request)"
+                pTooltip="Reject Request"
+                tooltipPosition="top"
+                *ngIf="request.status === 'Pending'">
+                <i class="pi pi-times"></i>
+              </button>
+              
+              <button 
+                class="action-btn delete" 
+                (click)="deleteRequest(request)"
+                pTooltip="Delete Request"
+                tooltipPosition="top">
+                <i class="pi pi-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+
+      <!-- Empty State -->
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="8" class="empty-state">
+            <div class="empty-content">
+              <i class="pi pi-user-plus empty-icon"></i>
+              <h3>No role requests found</h3>
+              <p>There are no role change requests to review at the moment.</p>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <!-- Bulk Actions -->
+  <div class="bulk-actions" *ngIf="selectedRequests.length > 0">
+    <div class="bulk-info">
+      <span>{{ selectedRequests.length }} request(s) selected</span>
+    </div>
+    <div class="bulk-buttons">
+      <button class="btn-secondary" (click)="selectedRequests = []">
+        <i class="pi pi-times"></i>
+        Clear Selection
+      </button>
+      <button class="btn-success" (click)="approveSelectedRequests()">
+        <i class="pi pi-check"></i>
+        Approve Selected
+      </button>
+      <button class="btn-danger" (click)="rejectSelectedRequests()">
+        <i class="pi pi-times"></i>
+        Reject Selected
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+.admin-home {
+    display: flex;
+    height: 100vh;
+    background-color: #f8f9fa;
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 20px;
+    margin-left: 80px; // Account for collapsed sidebar width
+    transition: margin-left 0.3s ease;
+    
+    &.sidebar-expanded {
+      margin-left: 250px; // Account for expanded sidebar width
+    }
+  }
