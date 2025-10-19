@@ -10,9 +10,9 @@ import { CartService } from '../../services/cart.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  cartItemCount = 0;
-  showUserMenu = false;
-  currentRoute = '';
+  cartItemCount: number = 0;
+  showUserMenu: boolean = false;
+  currentRoute: string = '';
   private subscriptions: Subscription[] = [];
 
   constructor(
@@ -75,6 +75,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   isActiveRoute(route: string): boolean {
     return this.currentRoute === route;
+  }
+
+  shouldShowHeader(): boolean {
+    return !this.currentRoute.includes('/auth');
   }
 
   logout(): void {

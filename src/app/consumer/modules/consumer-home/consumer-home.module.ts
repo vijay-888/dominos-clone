@@ -10,7 +10,7 @@ import { FavoritesComponent } from './components/favorites/favorites.component';
 import { MenuItemsComponent } from '../../../shared/components/menu-items/menu-items.component';
 import { MenuItemDetailsComponent } from '../../../shared/components/menu-item-details/menu-item-details.component';
 import { CartComponent } from '../../../shared/components/cart/cart.component';
-import { HeaderComponent } from '../../../shared/components/header/header.component';
+// import { HeaderComponent } from '../../../shared/components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { HeaderComponent } from '../../../shared/components/header/header.compon
     MenuItemsComponent,
     MenuItemDetailsComponent,
     CartComponent,
-    HeaderComponent
+    // HeaderComponent
   ],
   imports: [
     CommonModule,
