@@ -1,0 +1,172 @@
+<div class="register-container">
+    <div class="register-background">
+      <div class="food-pattern"></div>
+    </div>
+    
+    <div class="register-content">
+      <div class="register-card-wrapper">
+        <p-card class="register-card">
+              <ng-template pTemplate="header">
+                <div class="register-header">
+                  <div class="logo">
+                    <h1 class="animated-title">F<span class="oo-animation">OO</span>DFRENZY</h1>
+                  </div>
+                  <p class="welcome-text">Join our food community! Create your account</p>
+                </div>
+              </ng-template>
+  
+              <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input 
+                      type="text" 
+                      id="firstName"
+                      pInputText 
+                      formControlName="firstName"
+                      placeholder="Enter your first name"
+                      class="form-input"
+                      [class.p-invalid]="isFieldInvalid('firstName')"
+                    />
+                    <small *ngIf="isFieldInvalid('firstName')" class="p-error">
+                      {{ getFieldError('firstName') }}
+                    </small>
+                  </div>
+  
+                  <div class="form-group">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input 
+                      type="text" 
+                      id="lastName"
+                      pInputText 
+                      formControlName="lastName"
+                      placeholder="Enter your last name"
+                      class="form-input"
+                      [class.p-invalid]="isFieldInvalid('lastName')"
+                    />
+                    <small *ngIf="isFieldInvalid('lastName')" class="p-error">
+                      {{ getFieldError('lastName') }}
+                    </small>
+                  </div>
+                </div>
+  
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input 
+                      type="email" 
+                      id="email"
+                      pInputText 
+                      formControlName="email"
+                      placeholder="Enter your email"
+                      class="form-input"
+                      [class.p-invalid]="isFieldInvalid('email')"
+                    />
+                    <small *ngIf="isFieldInvalid('email')" class="p-error">
+                      {{ getFieldError('email') }}
+                    </small>
+                  </div>
+  
+                  <div class="form-group">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input 
+                      type="tel" 
+                      id="phone"
+                      pInputText 
+                      formControlName="phone"
+                      placeholder="Enter your phone number"
+                      class="form-input"
+                      [class.p-invalid]="isFieldInvalid('phone')"
+                    />
+                    <small *ngIf="isFieldInvalid('phone')" class="p-error">
+                      {{ getFieldError('phone') }}
+                    </small>
+                  </div>
+                </div>
+  
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <p-password 
+                      formControlName="password"
+                      placeholder="Create a password"
+                      [feedback]="true"
+                      [toggleMask]="true"
+                      styleClass="form-input"
+                      [class.p-invalid]="isFieldInvalid('password')"
+                    ></p-password>
+                    <small *ngIf="isFieldInvalid('password')" class="p-error">
+                      {{ getFieldError('password') }}
+                    </small>
+                  </div>
+  
+                  <div class="form-group">
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <p-password 
+                      formControlName="confirmPassword"
+                      placeholder="Confirm your password"
+                      [feedback]="false"
+                      [toggleMask]="true"
+                      styleClass="form-input"
+                      [class.p-invalid]="isFieldInvalid('confirmPassword')"
+                    ></p-password>
+                    <small *ngIf="isFieldInvalid('confirmPassword')" class="p-error">
+                      {{ getFieldError('confirmPassword') }}
+                    </small>
+                  </div>
+                </div>
+  
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="dateOfBirth" class="form-label">Date of Birth</label>
+                    <input 
+                      type="date" 
+                      id="dateOfBirth"
+                      pInputText 
+                      formControlName="dateOfBirth"
+                      class="form-input"
+                      [class.p-invalid]="isFieldInvalid('dateOfBirth')"
+                    />
+                    <small *ngIf="isFieldInvalid('dateOfBirth')" class="p-error">
+                      {{ getFieldError('dateOfBirth') }}
+                    </small>
+                  </div>
+  
+                  <div class="form-group">
+                    <!-- Empty div to maintain grid structure -->
+                  </div>
+                </div>
+  
+            <div class="form-options">
+              <div class="terms-checkbox">
+                <p-checkbox 
+                  formControlName="agreeToTerms" 
+                  [binary]="true"
+                  inputId="agreeToTerms"
+                ></p-checkbox>
+                <label for="agreeToTerms" class="checkbox-label">
+                  I agree to the <a href="#" class="terms-link">Terms of Service</a> and <a href="#" class="terms-link">Privacy Policy</a>
+                </label>
+              </div>
+            </div>
+  
+            <button 
+              type="submit" 
+              class="register-button"
+              [disabled]="registerForm.invalid || isLoading"
+            >
+              <i class="pi pi-user-plus" *ngIf="!isLoading"></i>
+              <i class="pi pi-spin pi-spinner" *ngIf="isLoading"></i>
+              <span>{{ isLoading ? 'Creating Account...' : 'Create Account' }}</span>
+            </button>
+  
+            <div class="signin-link">
+              <p>Already have an account? <a routerLink="/login" class="link">Sign in here</a></p>
+            </div>
+          </form>
+        </p-card>
+      </div>
+    </div>
+  </div>
+  
+  <p-toast></p-toast>
