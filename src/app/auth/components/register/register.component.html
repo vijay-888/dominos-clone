@@ -150,19 +150,6 @@
             </div>
           </div>
 
-          <!-- <div class="form-options">
-            <div class="newsletter-checkbox">
-              <p-checkbox 
-                formControlName="newsletter" 
-                [binary]="true"
-                inputId="newsletter"
-              ></p-checkbox>
-              <label for="newsletter" class="checkbox-label">
-                Subscribe to our newsletter for food updates and offers
-              </label>
-            </div>
-          </div> -->
-
           <button 
             type="submit" 
             class="register-button"
@@ -172,29 +159,6 @@
             <i class="pi pi-spin pi-spinner" *ngIf="isLoading"></i>
             <span>{{ isLoading ? 'Creating Account...' : 'Create Account' }}</span>
           </button>
-
-          <!-- <p-divider align="center">
-            <span class="divider-text">or</span>
-          </p-divider>
-
-          <div class="social-login">
-            <button 
-              type="button"
-              class="social-button google-button"
-              (click)="signUpWithGoogle()"
-            >
-              <i class="pi pi-google"></i>
-              <span>Continue with Google</span>
-            </button>
-            <button 
-              type="button"
-              class="social-button apple-button"
-              (click)="signUpWithApple()"
-            >
-              <i class="pi pi-apple"></i>
-              <span>Continue with Apple</span>
-            </button>
-          </div> -->
 
           <div class="signin-link">
             <p>Already have an account? <a routerLink="/login" class="link">Sign in here</a></p>
