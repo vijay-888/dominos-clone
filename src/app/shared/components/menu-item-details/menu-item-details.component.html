@@ -23,6 +23,37 @@
             </div>
           </div>
         </div>
+
+         <!-- Nutritional Information -->
+         <div class="nutritional-info" *ngIf="menuItem.nutritionalInfo">
+          <h3>Nutritional Information</h3>
+          <div class="nutrition-grid">
+            <div class="nutrition-item">
+              <span class="nutrition-label">Calories</span>
+              <span class="nutrition-value">{{ menuItem.nutritionalInfo.calories }}</span>
+            </div>
+            <div class="nutrition-item">
+              <span class="nutrition-label">Protein</span>
+              <span class="nutrition-value">{{ menuItem.nutritionalInfo.protein }}</span>
+            </div>
+            <div class="nutrition-item">
+              <span class="nutrition-label">Carbs</span>
+              <span class="nutrition-value">{{ menuItem.nutritionalInfo.carbs }}</span>
+            </div>
+            <div class="nutrition-item">
+              <span class="nutrition-label">Fat</span>
+              <span class="nutrition-value">{{ menuItem.nutritionalInfo.fat }}</span>
+            </div>
+            <div class="nutrition-item">
+              <span class="nutrition-label">Fiber</span>
+              <span class="nutrition-value">{{ menuItem.nutritionalInfo.fiber }}</span>
+            </div>
+            <div class="nutrition-item">
+              <span class="nutrition-label">Sodium</span>
+              <span class="nutrition-value">{{ menuItem.nutritionalInfo.sodium }}</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Right Column - Details -->
@@ -60,36 +91,7 @@
             </div>
           </div>
 
-          <!-- Nutritional Information -->
-          <div class="nutritional-info" *ngIf="menuItem.nutritionalInfo">
-            <h3>Nutritional Information</h3>
-            <div class="nutrition-grid">
-              <div class="nutrition-item">
-                <span class="nutrition-label">Calories</span>
-                <span class="nutrition-value">{{ menuItem.nutritionalInfo.calories }}</span>
-              </div>
-              <div class="nutrition-item">
-                <span class="nutrition-label">Protein</span>
-                <span class="nutrition-value">{{ menuItem.nutritionalInfo.protein }}</span>
-              </div>
-              <div class="nutrition-item">
-                <span class="nutrition-label">Carbs</span>
-                <span class="nutrition-value">{{ menuItem.nutritionalInfo.carbs }}</span>
-              </div>
-              <div class="nutrition-item">
-                <span class="nutrition-label">Fat</span>
-                <span class="nutrition-value">{{ menuItem.nutritionalInfo.fat }}</span>
-              </div>
-              <div class="nutrition-item">
-                <span class="nutrition-label">Fiber</span>
-                <span class="nutrition-value">{{ menuItem.nutritionalInfo.fiber }}</span>
-              </div>
-              <div class="nutrition-item">
-                <span class="nutrition-label">Sodium</span>
-                <span class="nutrition-value">{{ menuItem.nutritionalInfo.sodium }}</span>
-              </div>
-            </div>
-          </div>
+         
 
           <!-- Additional Info -->
           <div class="additional-info">
@@ -97,10 +99,10 @@
               <i class="pi pi-clock"></i>
               <span>Prep Time: {{ menuItem.preparationTime }}</span>
             </div>
-            <div class="info-item" *ngIf="menuItem.size">
+            <!-- <div class="info-item" *ngIf="menuItem.size">
               <i class="pi pi-circle"></i>
               <span>Size: {{ menuItem.size }}</span>
-            </div>
+            </div> -->
             <div class="info-item" *ngIf="menuItem.allergens">
               <i class="pi pi-exclamation-triangle"></i>
               <span>Allergens: {{ menuItem.allergens.join(', ') }}</span>
@@ -109,9 +111,13 @@
 
           <!-- Action Buttons -->
           <div class="action-buttons">
-            <button class="btn-primary" (click)="addToCart()">
+            <button class="btn-primary" *ngIf="!isInCart" (click)="addToCart()">
               <i class="pi pi-shopping-cart"></i>
               Add to Cart
+            </button>
+            <button class="btn-primary" *ngIf="isInCart" (click)="viewCart()">
+              <i class="pi pi-shopping-cart"></i>
+              View in Cart ({{ cartItemCount }})
             </button>
             <button class="btn-secondary" (click)="addToFavorites()">
               <i class="pi pi-heart"></i>

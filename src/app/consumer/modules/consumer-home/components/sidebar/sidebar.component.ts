@@ -17,18 +17,6 @@ export class SidebarComponent implements OnInit {
             active: true
         },
         {
-            label: 'Menu',
-            icon: 'pi pi-list',
-            route: '/consumer/menu',
-            active: false
-        },
-        {
-            label: 'Orders',
-            icon: 'pi pi-shopping-cart',
-            route: '/consumer/orders',
-            active: false
-        },
-        {
             label: 'Favorites',
             icon: 'pi pi-heart',
             route: '/consumer/favorites',
@@ -60,6 +48,11 @@ export class SidebarComponent implements OnInit {
     setActiveItem(item: any) {
         this.menuItems.forEach(menuItem => menuItem.active = false);
         item.active = true;
+    }
+
+    navigateToRoute(item: any) {
+        this.setActiveItem(item);
+        this.router.navigate([item.route]);
     }
 
     logout() {

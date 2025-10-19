@@ -9,6 +9,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MenuItemsComponent } from '../../../shared/components/menu-items/menu-items.component';
 import { MenuItemDetailsComponent } from '../../../shared/components/menu-item-details/menu-item-details.component';
+import { CartComponent } from '../../../shared/components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MenuItemDetailsComponent } from '../../../shared/components/menu-item-d
     SidebarComponent,
     DashboardComponent,
     MenuItemsComponent,
-    MenuItemDetailsComponent
+    MenuItemDetailsComponent,
+    CartComponent
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CartService } from '../../services/cart.service';
 
 @Component({
     selector: 'app-menu-item-details',
@@ -8,6 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class MenuItemDetailsComponent implements OnInit {
     @Input() menuItem: any = null;
+    isInCart: boolean = false;
+    cartItemCount: number = 0;
 
     // Sample detailed menu item data
     sampleMenuItem = {
@@ -86,7 +89,11 @@ export class MenuItemDetailsComponent implements OnInit {
         ]
     };
 
-    constructor(private route: ActivatedRoute, private router: Router) { }
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private cartService: CartService
+    ) { }
 
     ngOnInit(): void {
         // Get item ID from route parameters
@@ -114,6 +121,9 @@ export class MenuItemDetailsComponent implements OnInit {
             // If no item is passed and no route param, use sample data
             this.menuItem = this.sampleMenuItem;
         }
+
+        // Check if item is in cart and update button state
+        this.checkCartStatus();
     }
 
     enhanceMenuItemWithDetails(item: any): any {
@@ -502,8 +512,20 @@ export class MenuItemDetailsComponent implements OnInit {
     }
 
     addToCart(): void {
-        console.log('Adding to cart:', this.menuItem);
+        this.cartService.addToCart(this.menuItem);
+        this.checkCartStatus();
         alert(`Added "${this.menuItem.name}" to your cart! Price: ${this.menuItem.price}`);
+    }
+
+    viewCart(): void {
+        this.router.navigate(['/consumer/cart']);
+    }
+
+    checkCartStatus(): void {
+        const cartItems = this.cartService.getCartItems();
+        const cartItem = cartItems.find(item => item.id === this.menuItem.id);
+        this.isInCart = !!cartItem;
+        this.cartItemCount = cartItem ? cartItem.quantity : 0;
     }
 
     addToFavorites(): void {

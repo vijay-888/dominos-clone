@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-menu-items',
@@ -29,7 +30,7 @@ export class MenuItemsComponent implements OnInit {
       price: '$12.99',
       rating: 4.5,
       category: 'veg-pizza',
-      image: 'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=400&h=300&fit=crop'
+      image: 'assets/images/margarita.jpg'
     },
     {
       id: 2,
@@ -38,7 +39,7 @@ export class MenuItemsComponent implements OnInit {
       price: '$13.99',
       rating: 4.4,
       category: 'veg-pizza',
-      image: 'https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&h=300&fit=crop'
+      image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&h=300&fit=crop'
     },
     {
       id: 3,
@@ -47,7 +48,7 @@ export class MenuItemsComponent implements OnInit {
       price: '$14.99',
       rating: 4.3,
       category: 'veg-pizza',
-      image: 'https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=400&h=300&fit=crop'
+      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop'
     },
     {
       id: 4,
@@ -56,7 +57,7 @@ export class MenuItemsComponent implements OnInit {
       price: '$15.99',
       rating: 4.6,
       category: 'veg-pizza',
-      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop'
+      image: 'https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=400&h=300&fit=crop'
     },
 
     // Non Veg Pizza's
@@ -67,7 +68,7 @@ export class MenuItemsComponent implements OnInit {
       price: '$14.99',
       rating: 4.7,
       category: 'non-veg-pizza',
-      image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400&h=300&fit=crop'
+      image: 'assets/images/pepironi.jpg'
     },
     {
       id: 6,
@@ -76,7 +77,7 @@ export class MenuItemsComponent implements OnInit {
       price: '$16.99',
       rating: 4.6,
       category: 'non-veg-pizza',
-      image: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&h=300&fit=crop'
+      image: 'assets/images/bbq-chicken.jpg'
     },
     {
       id: 7,
@@ -85,7 +86,7 @@ export class MenuItemsComponent implements OnInit {
       price: '$18.99',
       rating: 4.8,
       category: 'non-veg-pizza',
-      image: 'https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=400&h=300&fit=crop'
+      image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400&h=300&fit=crop'
     },
     {
       id: 8,
@@ -94,7 +95,7 @@ export class MenuItemsComponent implements OnInit {
       price: '$15.99',
       rating: 4.3,
       category: 'non-veg-pizza',
-      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop'
+      image: 'assets/images/hawalian.jpg'
     },
     {
       id: 9,
@@ -103,7 +104,7 @@ export class MenuItemsComponent implements OnInit {
       price: '$17.99',
       rating: 4.6,
       category: 'non-veg-pizza',
-      image: 'https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&h=300&fit=crop'
+      image: 'assets/images/buffalo-chicken.jpg'
     },
     {
       id: 10,
@@ -112,7 +113,7 @@ export class MenuItemsComponent implements OnInit {
       price: '$19.99',
       rating: 4.7,
       category: 'non-veg-pizza',
-      image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&h=300&fit=crop'
+      image: 'assets/images/supreme-pizza.jpg'
     },
 
     // Burger Pizza's
@@ -123,7 +124,7 @@ export class MenuItemsComponent implements OnInit {
       price: '$16.99',
       rating: 4.4,
       category: 'burger-pizza',
-      image: 'https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&h=300&fit=crop'
+      image: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&h=300&fit=crop'
     },
     {
       id: 12,
@@ -132,7 +133,7 @@ export class MenuItemsComponent implements OnInit {
       price: '$17.99',
       rating: 4.5,
       category: 'burger-pizza',
-      image: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&h=300&fit=crop'
+      image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400&h=300&fit=crop'
     },
     {
       id: 13,
@@ -141,7 +142,7 @@ export class MenuItemsComponent implements OnInit {
       price: '$18.99',
       rating: 4.6,
       category: 'burger-pizza',
-      image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400&h=300&fit=crop'
+      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop'
     },
 
     // Pizza Mania
@@ -152,7 +153,7 @@ export class MenuItemsComponent implements OnInit {
       price: '$8.99',
       rating: 4.2,
       category: 'pizza-mania',
-      image: 'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=400&h=300&fit=crop'
+      image: 'https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=400&h=300&fit=crop'
     },
     {
       id: 15,
@@ -161,7 +162,7 @@ export class MenuItemsComponent implements OnInit {
       price: '$9.99',
       rating: 4.3,
       category: 'pizza-mania',
-      image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400&h=300&fit=crop'
+      image: 'https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&h=300&fit=crop'
     },
     {
       id: 16,
@@ -170,7 +171,7 @@ export class MenuItemsComponent implements OnInit {
       price: '$7.99',
       rating: 4.1,
       category: 'pizza-mania',
-      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop'
+      image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&h=300&fit=crop'
     },
 
     // Sides
@@ -181,7 +182,7 @@ export class MenuItemsComponent implements OnInit {
       price: '$4.99',
       rating: 4.4,
       category: 'sides',
-      image: 'https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=400&h=300&fit=crop'
+      image: 'assets/images/garic-bread.jpg'
     },
     {
       id: 18,
@@ -190,7 +191,7 @@ export class MenuItemsComponent implements OnInit {
       price: '$8.99',
       rating: 4.5,
       category: 'sides',
-      image: 'https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&h=300&fit=crop'
+      image: 'assets/images/chicken-wings.jpg'
     },
     {
       id: 19,
@@ -199,7 +200,7 @@ export class MenuItemsComponent implements OnInit {
       price: '$3.99',
       rating: 4.2,
       category: 'sides',
-      image: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&h=300&fit=crop'
+      image: 'assets/images/french-fries.jpg'
     },
     {
       id: 20,
@@ -208,7 +209,7 @@ export class MenuItemsComponent implements OnInit {
       price: '$6.99',
       rating: 4.3,
       category: 'sides',
-      image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400&h=300&fit=crop'
+      image: 'assets/images/chicken-nuggets.jpg'
     },
     {
       id: 21,
@@ -217,11 +218,14 @@ export class MenuItemsComponent implements OnInit {
       price: '$5.99',
       rating: 4.1,
       category: 'sides',
-      image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&h=300&fit=crop'
+      image: 'assets/images/onion.jpg'
     }
   ];
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private cartService: CartService
+  ) { }
 
   ngOnInit(): void {
     // Initialize filtered items with all menu items
@@ -269,4 +273,5 @@ export class MenuItemsComponent implements OnInit {
       }
     });
   }
+
 }

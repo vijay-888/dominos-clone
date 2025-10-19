@@ -1,0 +1,250 @@
+<div class="cart-container">
+  <!-- Cart Header -->
+  <div class="cart-header">
+    <h1 class="cart-title">
+      <i class="pi pi-shopping-cart"></i>
+      Shopping Cart
+    </h1>
+    <div class="cart-summary" *ngIf="cartItems.length > 0">
+      <span class="item-count">{{ getTotalItems() }} {{ getTotalItems() === 1 ? 'item' : 'items' }}</span>
+    </div>
+  </div>
+
+  <!-- Empty Cart State -->
+  <div class="empty-cart" *ngIf="cartItems.length === 0">
+    <div class="empty-cart-content">
+      <i class="pi pi-shopping-cart empty-cart-icon"></i>
+      <h2>Your cart is empty</h2>
+      <p>Looks like you haven't added any items to your cart yet.</p>
+      <button class="btn-primary" routerLink="/consumer/dashboard">
+        <i class="pi pi-arrow-left"></i>
+        Continue Shopping
+      </button>
+    </div>
+  </div>
+
+  <!-- Cart Content -->
+  <div class="cart-content" *ngIf="cartItems.length > 0">
+    <div class="row">
+      <!-- Cart Items -->
+      <div class="col-12 col-lg-8">
+        <div class="cart-items-section">
+          <h2>Cart Items</h2>
+          <div class="cart-items-list">
+            <div class="cart-item" *ngFor="let item of cartItems">
+              <div class="item-image">
+                <img [src]="item.image" [alt]="item.name" class="item-img">
+              </div>
+              
+              <div class="item-details">
+                <h3 class="item-name">{{ item.name }}</h3>
+                <p class="item-category">{{ item.category }}</p>
+                <div class="item-price">${{ item.price.toFixed(2) }}</div>
+              </div>
+              
+              <div class="quantity-controls">
+                <button class="quantity-btn" (click)="decreaseQuantity(item.id)" [disabled]="item.quantity <= 1">
+                  <i class="pi pi-minus"></i>
+                </button>
+                <span class="quantity-display">{{ item.quantity }}</span>
+                <button class="quantity-btn" (click)="increaseQuantity(item.id)">
+                  <i class="pi pi-plus"></i>
+                </button>
+              </div>
+              
+              <div class="item-total">
+                <span class="total-price">${{ (item.price * item.quantity).toFixed(2) }}</span>
+              </div>
+              
+              <div class="item-actions">
+                <button class="remove-btn" (click)="removeItem(item.id)" title="Remove item">
+                  <i class="pi pi-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="col-12 col-lg-4">
+        <div class="order-summary">
+          <h2>Order Summary</h2>
+          
+          <!-- Promo Code Section -->
+          <div class="promo-section">
+            <h3>Promo Code</h3>
+            <div class="promo-input-group" *ngIf="!appliedPromo">
+              <input 
+                type="text" 
+                [(ngModel)]="promoCodeInput" 
+                placeholder="Enter promo code"
+                class="promo-input"
+                (keyup.enter)="applyPromoCode()"
+              >
+              <button class="promo-btn" (click)="applyPromoCode()">Apply</button>
+            </div>
+            
+            <div class="applied-promo" *ngIf="appliedPromo">
+              <div class="promo-info">
+                <span class="promo-code">{{ appliedPromo.code }}</span>
+                <span class="promo-discount">
+                  -{{ appliedPromo.type === 'percentage' ? appliedPromo.discount + '%' : '$' + appliedPromo.discount }}
+                </span>
+              </div>
+              <button class="remove-promo-btn" (click)="removePromoCode()">
+                <i class="pi pi-times"></i>
+              </button>
+            </div>
+            
+            <div class="promo-message" [class.success]="promoMessage.success" [class.error]="!promoMessage.success" *ngIf="promoMessage.message">
+              {{ promoMessage.message }}
+            </div>
+          </div>
+
+          <!-- Price Breakdown -->
+          <div class="price-breakdown">
+            <div class="price-row">
+              <span>Subtotal</span>
+              <span>${{ getCartTotal().toFixed(2) }}</span>
+            </div>
+            
+            <div class="price-row" *ngIf="appliedPromo">
+              <span>Discount ({{ appliedPromo.code }})</span>
+              <span class="discount">-${{ getDiscountAmount().toFixed(2) }}</span>
+            </div>
+            
+            <div class="price-row delivery-fee">
+              <span>Delivery Fee</span>
+              <span>${{ getDeliveryFee().toFixed(2) }}</span>
+            </div>
+            
+            <div class="price-row total-row">
+              <span>Total</span>
+              <span class="total-amount">${{ getFinalTotal().toFixed(2) }}</span>
+            </div>
+          </div>
+
+          <!-- Order Button -->
+          <button class="order-now-btn" (click)="proceedToPayment()">
+            <i class="pi pi-credit-card"></i>
+            Order Now - ${{ getFinalTotal().toFixed(2) }}
+          </button>
+          
+          <!-- Continue Shopping -->
+          <button class="continue-shopping-btn" routerLink="/consumer/dashboard">
+            <i class="pi pi-arrow-left"></i>
+            Continue Shopping
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Payment Modal -->
+<div class="payment-modal" *ngIf="showPaymentModal" (click)="closePaymentModal($event)">
+  <div class="payment-content" (click)="$event.stopPropagation()">
+    <div class="payment-header">
+      <h2>Payment Details</h2>
+      <button class="close-btn" (click)="closePaymentModal()">
+        <i class="pi pi-times"></i>
+      </button>
+    </div>
+    
+    <div class="payment-body">
+      <div class="order-summary-payment">
+        <h3>Order Summary</h3>
+        <div class="payment-items">
+          <div class="payment-item" *ngFor="let item of cartItems">
+            <span>{{ item.name }} x{{ item.quantity }}</span>
+            <span>${{ (item.price * item.quantity).toFixed(2) }}</span>
+          </div>
+        </div>
+        <div class="payment-total">
+          <span>Total: ${{ getFinalTotal().toFixed(2) }}</span>
+        </div>
+      </div>
+      
+      <div class="payment-methods">
+        <h3>Payment Method</h3>
+        <div class="payment-options">
+          <label class="payment-option">
+            <input type="radio" name="paymentMethod" value="card" [(ngModel)]="selectedPaymentMethod">
+            <span class="payment-label">
+              <i class="pi pi-credit-card"></i>
+              Credit/Debit Card
+            </span>
+          </label>
+          
+          <label class="payment-option">
+            <input type="radio" name="paymentMethod" value="upi" [(ngModel)]="selectedPaymentMethod">
+            <span class="payment-label">
+              <i class="pi pi-mobile"></i>
+              UPI Payment
+            </span>
+          </label>
+          
+          <label class="payment-option">
+            <input type="radio" name="paymentMethod" value="cod" [(ngModel)]="selectedPaymentMethod">
+            <span class="payment-label">
+              <i class="pi pi-money-bill"></i>
+              Cash on Delivery
+            </span>
+          </label>
+        </div>
+      </div>
+      
+      <div class="payment-actions">
+        <button class="btn-secondary" (click)="closePaymentModal()">Cancel</button>
+        <button class="btn-primary" (click)="processPayment()" [disabled]="!selectedPaymentMethod">
+          <i class="pi pi-check"></i>
+          Pay ${{ getFinalTotal().toFixed(2) }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Order Confirmation Modal -->
+<div class="confirmation-modal" *ngIf="showConfirmationModal" (click)="closeConfirmationModal($event)">
+  <div class="confirmation-content" (click)="$event.stopPropagation()">
+    <div class="confirmation-header">
+      <i class="pi pi-check-circle success-icon"></i>
+      <h2>Order Placed Successfully!</h2>
+    </div>
+    
+    <div class="confirmation-body">
+      <p>Thank you for your order! Your food will be prepared and delivered soon.</p>
+      
+      <div class="order-details">
+        <h3>Order Details</h3>
+        <div class="order-info">
+          <div class="info-row">
+            <span>Order ID:</span>
+            <span class="order-id">#{{ orderId }}</span>
+          </div>
+          <div class="info-row">
+            <span>Total Amount:</span>
+            <span>${{ getFinalTotal().toFixed(2) }}</span>
+          </div>
+          <div class="info-row">
+            <span>Estimated Delivery:</span>
+            <span>{{ getEstimatedDeliveryTime() }}</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="confirmation-actions">
+        <button class="btn-primary" (click)="goToDashboard()">
+          <i class="pi pi-home"></i>
+          Back to Home
+        </button>
+        <button class="btn-secondary" (click)="trackOrder()">
+          <i class="pi pi-map-marker"></i>
+          Track Order
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
