@@ -1,0 +1,225 @@
+// Import mixin for Bootstrap breakpoints
+@import '../../../../../../styles/mixin.scss';
+// Import variables
+@import '../../../../../../styles/variable.scss';
+
+.sidebar {
+  height: 100vh;
+  background: linear-gradient(180deg, $sidebar-bg-start 0%, $sidebar-bg-end 100%);
+  color: $sidebar-white;
+  transition: width 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 2px 0 10px $shadow-black-light;
+  
+  // Mobile first (xs) - collapsed by default
+  width: 70px;
+}
+
+// Small devices (sm) - 576px+
+@include media-breakpoint-up(sm) {
+  .sidebar {
+    width: 70px;
+  }
+}
+
+// Medium devices (md) - 768px+
+@include media-breakpoint-up(md) {
+  .sidebar {
+    width: 250px;
+    
+    &.collapsed {
+      width: 70px;
+    }
+  }
+}
+
+.sidebar-header {
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid $sidebar-border-light;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    i {
+      font-size: 1.5rem;
+      color: $stat-red;
+    }
+  }
+
+  .toggle-btn {
+    background: none;
+    border: none;
+    color: $sidebar-white;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: $sidebar-hover-bg;
+    }
+
+    i {
+      font-size: 1rem;
+    }
+  }
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 1rem 0;
+
+  .nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    .nav-item {
+      margin: 0.25rem 0;
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+        color: $sidebar-text-gray;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border-left: 3px solid transparent;
+
+        &:hover {
+          background-color: $sidebar-hover-bg;
+          color: $sidebar-white;
+          border-left-color: $sidebar-active-border;
+        }
+
+        &.active {
+          background-color: $sidebar-active-bg;
+          color: $sidebar-white;
+          border-left-color: $sidebar-active-border;
+        }
+
+        i {
+          font-size: 1.1rem;
+          width: 20px;
+          text-align: center;
+        }
+
+        span {
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+.sidebar-footer {
+  padding: 1rem;
+  border-top: 1px solid $sidebar-border-light;
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background-color: $overlay-white-lighter;
+    border-radius: 8px;
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      background-color: $sidebar-user-bg;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      i {
+        font-size: 1.2rem;
+      }
+    }
+
+    .user-details {
+      display: flex;
+      flex-direction: column;
+
+      .user-name {
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      .user-role {
+        font-size: 0.8rem;
+        color: $sidebar-text-gray;
+      }
+    }
+  }
+
+  .logout-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background-color: $sidebar-logout-bg;
+    color: $sidebar-white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+
+    &:hover {
+      background-color: $sidebar-logout-hover;
+    }
+
+    &.collapsed {
+      justify-content: center;
+      padding: 0.75rem;
+    }
+
+    i {
+      font-size: 1rem;
+    }
+  }
+}
+
+// Extra small devices only (xs) - 0px to 575.98px
+@include media-breakpoint-only(xs) {
+  .sidebar {
+    // Ensure sidebar is always collapsed on mobile
+    width: 70px !important;
+    
+    .sidebar-header {
+      padding: 1rem 0.5rem;
+      
+      .logo span {
+        display: none;
+      }
+    }
+    
+    .sidebar-nav .nav-list .nav-item .nav-link span {
+      display: none;
+    }
+    
+    .sidebar-footer .user-info {
+      .user-details {
+        display: none;
+      }
+    }
+  }
+}

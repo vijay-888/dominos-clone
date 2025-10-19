@@ -1,0 +1,506 @@
+// Import mixin for Bootstrap breakpoints
+@import '../../../../../../styles/mixin.scss';
+// Import variables
+@import '../../../../../../styles/variable.scss';
+
+.dashboard {
+  background-color: $dashboard-bg;
+  min-height: 100vh;
+  
+  // Mobile first (xs) - smaller padding
+  padding: 1rem;
+}
+
+// Small devices (sm) - 576px+
+@include media-breakpoint-up(sm) {
+  .dashboard {
+    padding: 1.5rem;
+  }
+}
+
+// Medium devices (md) - 768px+
+@include media-breakpoint-up(md) {
+  .dashboard {
+    padding: 2rem;
+  }
+}
+
+// Large devices (lg) - 992px+
+@include media-breakpoint-up(lg) {
+  .dashboard-header {
+    .header-content {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      p {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
+
+// Extra small devices only (xs) - mobile responsive header
+@include media-breakpoint-only(xs) {
+  .dashboard-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: $dashboard-white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px $shadow-black-light;
+}
+
+.header-content {
+  h1 {
+    margin: 0 0 0.5rem 0;
+    color: $dashboard-text-dark;
+    font-weight: 600;
+    
+    // Mobile first (xs) - smaller font size
+    font-size: 1.5rem;
+  }
+
+  p {
+    margin: 0;
+    color: $dashboard-text-gray;
+    
+    // Mobile first (xs) - smaller font size
+    font-size: 1rem;
+  }
+}
+
+.header-actions {
+  .action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &.primary {
+      background: linear-gradient(135deg, $action-purple-start 0%, $action-purple-end 100%);
+      color: $sidebar-white;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px $action-purple-shadow;
+      }
+    }
+
+    i {
+      font-size: 1rem;
+    }
+  }
+}
+
+.dashboard-content {
+  .stats-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    
+    // Mobile: Column layout with compact spacing
+    @include media-breakpoint-only(xs) {
+      gap: 0.75rem;
+      flex-direction: column;
+      
+      .stat-card {
+        width: 100%;
+      }
+    }
+    
+    // Small screens: Column layout
+    @include media-breakpoint-only(sm) {
+      gap: 1rem;
+      flex-direction: column;
+      
+      .stat-card {
+        width: 100%;
+      }
+    }
+    
+    // Medium screens: Single row
+    @include media-breakpoint-up(md) {
+      gap: 1rem;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      
+      .stat-card {
+        flex: 1;
+        min-width: 0;
+      }
+    }
+    
+    // Large screens: Single row with optimal spacing
+    @include media-breakpoint-up(lg) {
+      gap: 1.25rem;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      
+      .stat-card {
+        flex: 1;
+        min-width: 0;
+      }
+    }
+  }
+
+  .stat-card {
+    background: $dashboard-white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px $shadow-black-light;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: transform 0.3s ease;
+    height: auto;
+    padding: 1rem;
+    
+    // Mobile: Column layout styling
+    @include media-breakpoint-only(xs) {
+      padding: 1rem;
+      gap: 0.75rem;
+      height: auto;
+    }
+    
+    // Small screens: Column layout styling
+    @include media-breakpoint-only(sm) {
+      padding: 1.25rem;
+      gap: 1rem;
+      height: auto;
+    }
+    
+    // Medium+ screens: Row layout styling
+    @include media-breakpoint-up(md) {
+      padding: 1.25rem;
+      gap: 1rem;
+      height: 100%;
+    }
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    .stat-icon {
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $sidebar-white;
+      flex-shrink: 0;
+
+      // Mobile: Medium icon for column layout
+      @include media-breakpoint-only(xs) {
+        width: 50px;
+        height: 50px;
+        
+        i {
+          font-size: 1.25rem;
+        }
+      }
+      
+      // Small screens: Standard icon for column layout
+      @include media-breakpoint-only(sm) {
+        width: 60px;
+        height: 60px;
+        
+        i {
+          font-size: 1.5rem;
+        }
+      }
+      
+      // Medium+ screens: Standard icon for row layout
+      @include media-breakpoint-up(md) {
+        width: 60px;
+        height: 60px;
+        
+        i {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    .stat-content {
+      flex: 1;
+      min-width: 0; // Allow text to wrap if needed
+
+      .stat-value {
+        font-weight: bold;
+        color: $dashboard-text-dark;
+        margin-bottom: 0.25rem;
+        
+        // Mobile: Medium font for column layout
+        @include media-breakpoint-only(xs) {
+          font-size: 1.5rem;
+        }
+        
+        // Small screens: Standard font for column layout
+        @include media-breakpoint-only(sm) {
+          font-size: 1.75rem;
+        }
+        
+        // Medium+ screens: Standard font for row layout
+        @include media-breakpoint-up(md) {
+          font-size: 1.75rem;
+        }
+        
+        @include media-breakpoint-up(lg) {
+          font-size: 2rem;
+        }
+      }
+
+      .stat-title {
+        color: $dashboard-text-gray;
+        margin-bottom: 0.25rem;
+        
+        // Mobile: Readable font for column layout
+        @include media-breakpoint-only(xs) {
+          font-size: 0.9rem;
+        }
+        
+        // Small screens: Standard font for column layout
+        @include media-breakpoint-only(sm) {
+          font-size: 0.95rem;
+        }
+        
+        // Medium+ screens: Standard font for row layout
+        @include media-breakpoint-up(md) {
+          font-size: 0.85rem;
+        }
+        
+        @include media-breakpoint-up(lg) {
+          font-size: 0.9rem;
+        }
+      }
+
+      .stat-change {
+        font-weight: 500;
+        
+        // Mobile: Readable font for column layout
+        @include media-breakpoint-only(xs) {
+          font-size: 0.8rem;
+        }
+        
+        // Small screens: Standard font for column layout
+        @include media-breakpoint-only(sm) {
+          font-size: 0.85rem;
+        }
+        
+        // Medium+ screens: Standard font for row layout
+        @include media-breakpoint-up(md) {
+          font-size: 0.75rem;
+        }
+        
+        @include media-breakpoint-up(lg) {
+          font-size: 0.8rem;
+        }
+
+        &.positive {
+          color: $stat-green;
+        }
+      }
+    }
+  }
+
+  .content-card {
+    background: $dashboard-white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px $shadow-black-light;
+    overflow: hidden;
+    height: 100%;
+
+    .card-header {
+      padding: 1.5rem;
+      border-bottom: 1px solid $content-border;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      h3 {
+        margin: 0;
+        color: $content-text-dark;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      .view-all {
+        color: $content-blue;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .card-content {
+      padding: 1rem;
+
+      .order-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+        border-bottom: 1px solid $content-border;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .order-info {
+          .order-id {
+            font-weight: 600;
+            color: $content-text-dark;
+            margin-bottom: 0.25rem;
+          }
+
+          .restaurant {
+            color: $content-blue;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+          }
+
+          .items {
+            color: $content-text-gray;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+          }
+
+          .order-date {
+            color: $content-text-light;
+            font-size: 0.8rem;
+          }
+        }
+
+        .order-details {
+          text-align: right;
+
+          .order-total {
+            font-weight: bold;
+            color: $content-text-dark;
+            margin-bottom: 0.25rem;
+          }
+
+          .order-status {
+            font-size: 0.9rem;
+            font-weight: 500;
+          }
+        }
+      }
+
+      .restaurant-item {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid $content-border;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .restaurant-image {
+          width: 60px;
+          height: 60px;
+          border-radius: 8px;
+          overflow: hidden;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .restaurant-info {
+          flex: 1;
+
+          .restaurant-name {
+            font-weight: 600;
+            color: $content-text-dark;
+            margin-bottom: 0.25rem;
+          }
+
+          .restaurant-cuisine {
+            color: $content-text-gray;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+          }
+
+          .restaurant-rating {
+            color: $stat-orange;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+
+            i {
+              margin-right: 0.25rem;
+            }
+          }
+
+          .delivery-time {
+            color: $content-text-light;
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+  }
+
+  .quick-actions {
+    background: $dashboard-white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px $shadow-black-light;
+
+    h3 {
+      margin: 0 0 1rem 0;
+      color: $dashboard-text-dark;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 1rem;
+      background: $action-btn-bg;
+      border: 1px solid $action-btn-border;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: $action-btn-text;
+      font-weight: 500;
+      height: 100%;
+
+      &:hover {
+        background: $action-btn-hover-bg;
+        border-color: $action-btn-hover-border;
+        color: $action-btn-hover-text;
+      }
+
+      i {
+        font-size: 1.2rem;
+      }
+
+      span {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

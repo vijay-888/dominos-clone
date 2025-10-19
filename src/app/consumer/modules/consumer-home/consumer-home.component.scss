@@ -1,0 +1,58 @@
+// Import mixin for Bootstrap breakpoints
+@import '../../../../styles/mixin.scss';
+// Import variables
+@import '../../../../styles/variable.scss';
+
+.consumer-home-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: $dashboard-bg;
+}
+
+.main-content {
+  flex: 1;
+  transition: margin-left 0.3s ease;
+  overflow-x: auto;
+  
+  // Mobile first (xs) - account for collapsed sidebar
+  margin-left: 70px;
+}
+
+// Small devices (sm) - 576px+
+@include media-breakpoint-up(sm) {
+  .main-content {
+    margin-left: 70px;
+  }
+}
+
+// Medium devices (md) - 768px+
+@include media-breakpoint-up(md) {
+  .main-content {
+    margin-left: 250px;
+  }
+}
+
+// When sidebar is collapsed - override for all screen sizes
+.consumer-home-container:has(.sidebar.collapsed) {
+  .main-content {
+    margin-left: 70px;
+  }
+}
+
+// When sidebar is expanded - only applies to medium screens and up
+.consumer-home-container:has(.sidebar:not(.collapsed)) {
+  @include media-breakpoint-up(md) {
+    .main-content {
+      margin-left: 250px;
+    }
+  }
+}
+
+// Extra small devices only (xs) - mobile responsive adjustments
+@include media-breakpoint-only(xs) {
+  .consumer-home-container {
+    .main-content {
+      margin-left: 70px; // Always account for collapsed sidebar on mobile
+    }
+  }
+}

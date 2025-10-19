@@ -4,14 +4,17 @@ import { RouterModule, Routes } from '@angular/router';
 // import { RegisterComponent } from './auth/components/register/register.component';
 
 const routes: Routes = [
-
   {
     path: '',
     loadChildren: () =>
       import('./auth/module/auth/auth.module').then(m => m.AuthModule)
   },
-  { path: '**', redirectTo: '/login' },
-
+  {
+    path: 'consumer',
+    loadChildren: () =>
+      import('./consumer/modules/consumer-home/consumer-home.module').then(m => m.ConsumerHomeModule)
+  },
+  { path: '**', redirectTo: '/login' }
 ];
 
 @NgModule({

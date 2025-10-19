@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private router: Router,
     private messageService: MessageService
   ) { }
 
@@ -41,6 +43,9 @@ export class LoginComponent implements OnInit {
           detail: 'Login successful!'
         });
         console.log('Login form submitted:', this.loginForm.value);
+
+        // Redirect to consumer dashboard
+        this.router.navigate(['/consumer/dashboard']);
       }, 2000);
     } else {
       this.markFormGroupTouched();

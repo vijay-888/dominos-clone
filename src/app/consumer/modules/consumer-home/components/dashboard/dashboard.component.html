@@ -1,0 +1,116 @@
+<div class="dashboard">
+  <div class="dashboard-header">
+    <div class="header-content">
+      <h1>Welcome back, John!</h1>
+      <p>Here's what's happening with your food orders today.</p>
+    </div>
+    <div class="header-actions">
+      <button class="action-btn primary">
+        <i class="pi pi-plus"></i>
+        New Order
+      </button>
+    </div>
+  </div>
+
+  <div class="dashboard-content">
+    <!-- Stats Cards -->
+    <div class="mb-4 stats-container">
+      <div class="stat-card" *ngFor="let stat of stats">
+        <div class="stat-icon" [style.background-color]="stat.color">
+          <i [class]="stat.icon"></i>
+        </div>
+        <div class="stat-content">
+          <div class="stat-value">{{ stat.value }}</div>
+          <div class="stat-title">{{ stat.title }}</div>
+          <div class="stat-change positive">{{ stat.change }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="row mb-4">
+      <!-- Recent Orders -->
+      <!-- <div class="col-12 col-md-6 mb-3">
+        <div class="content-card">
+          <div class="card-header">
+            <h3>Recent Orders</h3>
+            <a href="#" class="view-all">View All</a>
+          </div>
+          <div class="card-content">
+            <div class="order-item" *ngFor="let order of recentOrders">
+              <div class="order-info">
+                <div class="order-id">{{ order.id }}</div>
+                <div class="restaurant">{{ order.restaurant }}</div>
+                <div class="items">{{ order.items }}</div>
+                <div class="order-date">{{ order.date }}</div>
+              </div>
+              <div class="order-details">
+                <div class="order-total">{{ order.total }}</div>
+                <div class="order-status" [style.color]="order.statusColor">
+                  {{ order.status }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- Recommended Restaurants -->
+      <!-- <div class="col-12 col-md-6 mb-3">
+        <div class="content-card">
+          <div class="card-header">
+            <h3>Recommended for You</h3>
+            <a href="#" class="view-all">View All</a>
+          </div>
+          <div class="card-content">
+            <div class="restaurant-item" *ngFor="let restaurant of recommendedRestaurants">
+              <div class="restaurant-image">
+                <img [src]="restaurant.image" [alt]="restaurant.name">
+              </div>
+              <div class="restaurant-info">
+                <div class="restaurant-name">{{ restaurant.name }}</div>
+                <div class="restaurant-cuisine">{{ restaurant.cuisine }}</div>
+                <div class="restaurant-rating">
+                  <i class="pi pi-star-fill"></i>
+                  {{ restaurant.rating }}
+                </div>
+                <div class="delivery-time">{{ restaurant.deliveryTime }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+
+    <!-- Quick Actions -->
+    <!-- <div class="quick-actions">
+      <h3>Quick Actions</h3>
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-3 mb-3">
+          <button class="action-btn w-100">
+            <i class="pi pi-search"></i>
+            <span>Browse Menu</span>
+          </button>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mb-3">
+          <button class="action-btn w-100">
+            <i class="pi pi-heart"></i>
+            <span>My Favorites</span>
+          </button>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mb-3">
+          <button class="action-btn w-100">
+            <i class="pi pi-map-marker"></i>
+            <span>Track Order</span>
+          </button>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mb-3">
+          <button class="action-btn w-100">
+            <i class="pi pi-user"></i>
+            <span>Update Profile</span>
+          </button>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>

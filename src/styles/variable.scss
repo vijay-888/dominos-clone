@@ -85,3 +85,51 @@ $focus-black-light: rgba(0, 0, 0, 0.1);
 // Emoji Shadow Colors
 $emoji-shadow-orange: rgba(255, 107, 53, 0.8);
 $emoji-shadow-orange-light: rgba(255, 107, 53, 0.5);
+
+// Consumer Dashboard Colors
+$dashboard-bg: #f8f9fa;
+$dashboard-white: #ffffff;
+$dashboard-text-dark: #2c3e50;
+$dashboard-text-gray: #7f8c8d;
+$dashboard-text-light-gray: #95a5a6;
+$dashboard-border-light: #ecf0f1;
+$dashboard-border-gray: #e9ecef;
+
+// Sidebar Colors
+$sidebar-bg-start: #2c3e50;
+$sidebar-bg-end: #34495e;
+$sidebar-white: #ffffff;
+$sidebar-text-gray: rgba(255,255,255,0.8);
+$sidebar-border-light: rgba(255,255,255,0.1);
+$sidebar-hover-bg: rgba(255,255,255,0.1);
+$sidebar-active-bg: rgba(52, 152, 219, 0.2);
+$sidebar-active-border: #3498db;
+$sidebar-user-bg: #3498db;
+$sidebar-logout-bg: #e74c3c;
+$sidebar-logout-hover: #c0392b;
+
+// Dashboard Stats Colors
+$stat-blue: #3498db;
+$stat-red: #e74c3c;
+$stat-green: #27ae60;
+$stat-orange: #f39c12;
+
+// Dashboard Action Colors
+$action-purple-start: #667eea;
+$action-purple-end: #764ba2;
+$action-purple-shadow: rgba(102, 126, 234, 0.4);
+
+// Content Colors
+$content-blue: #3498db;
+$content-text-dark: #2c3e50;
+$content-text-gray: #7f8c8d;
+$content-text-light: #95a5a6;
+$content-border: #ecf0f1;
+
+// Action Button Colors
+$action-btn-bg: #f8f9fa;
+$action-btn-border: #e9ecef;
+$action-btn-text: #495057;
+$action-btn-hover-bg: #e9ecef;
+$action-btn-hover-border: #3498db;
+$action-btn-hover-text: #3498db;
