@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
+import { FavoritesService } from '../../services/favorites.service';
 
 @Component({
     selector: 'app-menu-item-details',
@@ -12,6 +13,7 @@ export class MenuItemDetailsComponent implements OnInit {
     isInCart: boolean = false;
     cartItemCount: number = 0;
     isProvider: boolean = false;
+    isFavorite: boolean = false;
 
     // Sample detailed menu item data
     sampleMenuItem = {
@@ -93,7 +95,8 @@ export class MenuItemDetailsComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private cartService: CartService
+        private cartService: CartService,
+        private favoritesService: FavoritesService
     ) { }
 
     ngOnInit(): void {
@@ -130,6 +133,7 @@ export class MenuItemDetailsComponent implements OnInit {
         // Check if item is in cart and update button state (only for consumers)
         if (!this.isProvider) {
             this.checkCartStatus();
+            this.isFavorite = this.favoritesService.isFavorite(this.menuItem.id);
         }
     }
 
@@ -557,8 +561,26 @@ export class MenuItemDetailsComponent implements OnInit {
     }
 
     addToFavorites(): void {
-        console.log('Adding to favorites:', this.menuItem);
-        alert(`Added "${this.menuItem.name}" to your favorites!`);
+        this.favoritesService.toggleFavorite({
+            id: this.menuItem.id,
+            name: this.menuItem.name,
+            price: this.menuItem.price,
+            image: this.menuItem.image || this.menuItem.largeImage,
+            category: this.menuItem.category
+        });
+        alert(`Updated favorites for "${this.menuItem.name}"`);
+    }
+
+    onFavoriteClick(): void {
+        if (!this.isFavorite) {
+            this.addToFavorites();
+            this.isFavorite = true;
+            // Navigate to favorites after adding
+            this.router.navigate(['/consumer/favorites']);
+        } else {
+            // Already favorite, take user to favorites page
+            this.router.navigate(['/consumer/favorites']);
+        }
     }
 
     getStarArray(rating: number): number[] {

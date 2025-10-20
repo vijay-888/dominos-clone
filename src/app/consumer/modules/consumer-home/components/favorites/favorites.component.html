@@ -1,18 +1,51 @@
 <div class="favorites-container">
   <div class="favorites-header">
-    <h2>Your Favorites</h2>
-    <p>Manage your favorite food items here</p>
+    <div class="header-content">
+      <div class="header-icon">
+        <i class="pi pi-heart-fill"></i>
+      </div>
+      <div class="header-text">
+        <h2>Your Favorites</h2>
+        <p>{{ favorites.length }} {{ favorites.length === 1 ? 'item' : 'items' }} saved</p>
+      </div>
+    </div>
   </div>
   
   <div class="favorites-content">
-    <div class="empty-state" *ngIf="true">
-      <i class="pi pi-heart empty-icon"></i>
+    <div class="empty-state" *ngIf="favorites.length === 0">
+      <i class="pi pi-heart empty-icon" aria-hidden="true"></i>
       <h3>No favorites yet</h3>
       <p>Start adding items to your favorites to see them here!</p>
-      <button class="btn-primary" (click)="goToDashboard()">
-        <i class="pi pi-home"></i>
+      <button class="btn-primary" (click)="goToDashboard()" aria-label="Browse menu">
+        <i class="pi pi-home" aria-hidden="true"></i>
         Browse Menu
       </button>
+    </div>
+
+    <div class="favorites-grid" *ngIf="favorites.length > 0" role="list">
+      <div class="favorite-card" *ngFor="let fav of favorites" (click)="goToDetails(fav)" role="listitem" tabindex="0">
+        <div class="fav-media">
+          <img [src]="fav.image" [alt]="fav.name" class="fav-image">
+          <span class="badge category" *ngIf="fav.category">{{ fav.category }}</span>
+          <span class="badge price">{{ fav.price }}</span>
+          <button class="btn-icon remove" (click)="removeFavorite(fav.id); $event.stopPropagation();" aria-label="Remove from favorites">
+            <i class="pi pi-trash"></i>
+          </button>
+        </div>
+        <div class="fav-body">
+          <h4 class="fav-name">{{ fav.name }}</h4>
+          <div class="fav-cta">
+            <button class="btn-outline" (click)="goToDetails(fav); $event.stopPropagation();" aria-label="View details">
+              <i class="pi pi-search"></i>
+              View
+            </button>
+            <button class="btn-secondary" (click)="removeFavorite(fav.id); $event.stopPropagation();">
+              <i class="pi pi-times"></i>
+              Remove
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

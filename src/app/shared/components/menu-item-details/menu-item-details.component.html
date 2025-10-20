@@ -119,9 +119,9 @@
               <i class="pi pi-shopping-cart"></i>
               View in Cart ({{ cartItemCount }})
             </button>
-            <button class="btn-secondary" *ngIf="!isProvider" (click)="addToFavorites()">
+            <button class="btn-secondary" *ngIf="!isProvider" (click)="onFavoriteClick()">
               <i class="pi pi-heart"></i>
-              Add to Favorites
+              {{ isFavorite ? 'Added to Favorites' : 'Add to Favorites' }}
             </button>
           </div>
         </div>

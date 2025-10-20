@@ -23,33 +23,75 @@
 .dashboard-content {
   .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.5rem;
     margin-bottom: 3rem;
-    
+
     .stat-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
       background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      transition: transform 0.3s ease;
-      
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c);
+        background-size: 200% 200%;
+        animation: gradientShift 3s ease infinite;
+      }
+
       &:hover {
-        transform: translateY(-5px);
+        transform: translateY(-6px);
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.12);
       }
-      
-      h3 {
-        color: #34495e;
-        margin-bottom: 1rem;
-        font-size: 1.1rem;
+
+      .stat-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.6rem;
+        flex-shrink: 0;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+
+        &.users { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        &.orders { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        &.revenue { background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%); }
+        &.providers { background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); }
       }
-      
-      .stat-number {
-        font-size: 2.5rem;
-        font-weight: bold;
-        color: #e74c3c;
-        margin: 0;
+
+      .stat-content {
+        h3 {
+          color: #34495e;
+          margin: 0 0 0.25rem 0;
+          font-size: 1rem;
+          font-weight: 600;
+        }
+
+        .stat-number {
+          font-size: 2.2rem;
+          font-weight: 800;
+          background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          margin: 0;
+          letter-spacing: -0.02em;
+        }
       }
     }
   }
@@ -57,8 +99,8 @@
   .admin-actions {
     background: white;
     padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
     
     h2 {
       color: #2c3e50;
@@ -72,11 +114,11 @@
       gap: 1rem;
       
       .action-btn {
-        background: #3498db;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
         border: none;
         padding: 1rem 1.5rem;
-        border-radius: 8px;
+        border-radius: 12px;
         font-size: 1rem;
         cursor: pointer;
         transition: all 0.3s ease;
@@ -85,9 +127,9 @@
         gap: 0.5rem;
         
         &:hover {
-          background: #2980b9;
+          transform: translateY(-3px) scale(1.02);
           transform: translateY(-2px);
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 8px 20px rgba(102, 126, 234, 0.35);
         }
         
         i {
@@ -96,6 +138,12 @@
       }
     }
   }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .placeholder-content {

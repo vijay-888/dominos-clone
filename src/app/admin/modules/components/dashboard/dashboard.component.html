@@ -7,20 +7,32 @@
   <div class="dashboard-content" *ngIf="currentPage === 'dashboard'">
     <div class="stats-grid">
       <div class="stat-card">
-        <h3>Total Users</h3>
-        <p class="stat-number" [appOdometer]="1234">0</p>
+        <div class="stat-icon users"><i class="pi pi-users"></i></div>
+        <div class="stat-content">
+          <h3>Total Users</h3>
+          <p class="stat-number" [appOdometer]="1234">0</p>
+        </div>
       </div>
       <div class="stat-card">
-        <h3>Total Orders</h3>
-        <p class="stat-number" [appOdometer]="5678">0</p>
+        <div class="stat-icon orders"><i class="pi pi-shopping-cart"></i></div>
+        <div class="stat-content">
+          <h3>Total Orders</h3>
+          <p class="stat-number" [appOdometer]="5678">0</p>
+        </div>
       </div>
       <div class="stat-card">
-        <h3>Revenue</h3>
-        <p class="stat-number">$12,345</p>
+        <div class="stat-icon revenue"><i class="pi pi-dollar"></i></div>
+        <div class="stat-content">
+          <h3>Revenue</h3>
+          <p class="stat-number">$12,345</p>
+        </div>
       </div>
       <div class="stat-card">
-        <h3>Active Providers</h3>
-        <p class="stat-number" [appOdometer]="89">0</p>
+        <div class="stat-icon providers"><i class="pi pi-briefcase"></i></div>
+        <div class="stat-content">
+          <h3>Active Providers</h3>
+          <p class="stat-number" [appOdometer]="89">0</p>
+        </div>
       </div>
     </div>
     
