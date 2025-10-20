@@ -11,6 +11,74 @@
   padding: 1rem;
 }
 
+.offer-marquee {
+  margin: 0 0 1.25rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  overflow: hidden;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #fff, #fbfdff);
+  border: 1px solid #e9ecef;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+  padding: 0.5rem 0;
+  animation: marquee-pulse-glow 2.5s ease-in-out infinite;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -30%;
+    width: 30%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
+    filter: blur(2px);
+    animation: marquee-shine 3s linear infinite;
+    pointer-events: none;
+  }
+  .marquee-track {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    white-space: nowrap;
+    will-change: transform;
+    animation: marquee-left-right 22s linear infinite;
+  }
+  .marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: #e03131;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0 0.25rem;
+    text-shadow: 0 0 0 rgba(224,49,49,0.0);
+    animation: marquee-text-glow 1.8s ease-in-out infinite alternate, marquee-text-color 1.2s linear infinite alternate;
+    i { color: #fa5252; }
+  }
+  .marquee-sep { color: #ced4da; }
+}
+
+@keyframes marquee-left-right {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marquee-pulse-glow {
+  0%, 100% { box-shadow: 0 6px 16px rgba(0,0,0,0.04), 0 0 0 0 rgba(250,82,82,0.0); }
+  50% { box-shadow: 0 8px 22px rgba(0,0,0,0.06), 0 0 0 4px rgba(250,82,82,0.08); }
+}
+@keyframes marquee-shine {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(360%); }
+}
+@keyframes marquee-text-glow {
+  0% { text-shadow: 0 0 0 rgba(224,49,49,0.0); }
+  100% { text-shadow: 0 0 8px rgba(224,49,49,0.55), 0 0 14px rgba(224,49,49,0.35); }
+}
+@keyframes marquee-text-color {
+  0% { color: #e03131; }
+  100% { color: #1f2937; }
+}
+
 // Small devices (sm) - 576px+
 @include media-breakpoint-up(sm) {
   .dashboard {

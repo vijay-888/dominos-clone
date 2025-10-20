@@ -52,11 +52,15 @@
                   </div>
                 </div>
                 
-                <!-- Order Now Button -->
+                <!-- Actions: Order + Add to Favorites -->
                 <div class="item-actions">
                   <button class="order-btn" (click)="viewDetails(item)">
                     <i class="pi pi-shopping-cart"></i>
                     Order Now
+                  </button>
+                  <button class="fav-btn" (click)="addToFavorites(item)">
+                    <i class="pi pi-heart"></i>
+                    Add to Favorites
                   </button>
                 </div>
               </div>

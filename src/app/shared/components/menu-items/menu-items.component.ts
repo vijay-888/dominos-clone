@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
+import { FavoritesService, FavoriteItem } from '../../services/favorites.service';
 
 @Component({
   selector: 'app-menu-items',
@@ -224,7 +225,8 @@ export class MenuItemsComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private cartService: CartService
+    private cartService: CartService,
+    private favoritesService: FavoritesService
   ) { }
 
   ngOnInit(): void {
@@ -280,6 +282,17 @@ export class MenuItemsComponent implements OnInit {
         image: encodeURIComponent(item.image)
       }
     });
+  }
+
+  addToFavorites(item: any): void {
+    const favItem: FavoriteItem = {
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      image: item.image,
+      category: item.category
+    };
+    this.favoritesService.addToFavorites(favItem);
   }
 
 }
