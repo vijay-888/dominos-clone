@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,13 +8,14 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
     isCollapsed = true;
+    @Output() collapsedChange = new EventEmitter<boolean>();
 
     menuItems = [
         {
             label: 'Dashboard',
             icon: 'pi pi-home',
             route: '/provider/dashboard',
-            active: true
+            active: false
         },
         {
             label: 'My Items',
@@ -49,17 +50,10 @@ export class SidebarComponent implements OnInit {
 
     toggleSidebar() {
         this.isCollapsed = !this.isCollapsed;
+        this.collapsedChange.emit(this.isCollapsed);
     }
 
-    setActiveItem(item: any) {
-        this.menuItems.forEach(menuItem => menuItem.active = false);
-        item.active = true;
-    }
-
-    navigateToRoute(item: any) {
-        this.setActiveItem(item);
-        this.router.navigate([item.route]);
-    }
+    // Active state now handled by RouterLinkActive in template
 
     logout() {
         // Implement logout functionality here

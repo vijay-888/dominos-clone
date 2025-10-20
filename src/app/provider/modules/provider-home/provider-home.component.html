@@ -1,6 +1,6 @@
 <div class="provider-home">
-  <app-sidebar></app-sidebar>
-  <div class="main-content">
+  <app-sidebar (collapsedChange)="onCollapsedChange($event)"></app-sidebar>
+  <div class="main-content" [class.sidebar-expanded]="!isSidebarCollapsed">
     <router-outlet></router-outlet>
   </div>
 </div>

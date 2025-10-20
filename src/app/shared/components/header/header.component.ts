@@ -57,17 +57,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
-  goToDashboard(): void {
-    this.router.navigate(['/consumer/dashboard']);
-  }
-
-  goToFavorites(): void {
-    this.router.navigate(['/consumer/favorites']);
-  }
-
-  goToCart(): void {
-    this.router.navigate(['/consumer/cart']);
-  }
+  // Navigation now handled by routerLink bindings in template
 
   toggleUserMenu(): void {
     this.showUserMenu = !this.showUserMenu;
@@ -85,5 +75,25 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.showUserMenu = false;
     this.cartService.clearCart();
     this.router.navigate(['/auth/login']);
+  }
+
+  onLogoError(event: any): void {
+    console.error('Logo image failed to load:', event);
+    // Fallback to text if image fails to load
+    const img = event.target as HTMLImageElement;
+    img.style.display = 'none';
+
+    // Create fallback text element
+    const fallback = document.createElement('span');
+    fallback.textContent = 'Food Frenzy';
+    fallback.className = 'logo-fallback';
+    fallback.style.cssText = `
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+    `;
+
+    img.parentNode?.appendChild(fallback);
   }
 }

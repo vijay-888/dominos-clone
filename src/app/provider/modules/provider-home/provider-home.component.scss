@@ -7,10 +7,23 @@
 .main-content {
   flex: 1;
   padding: 20px;
-  margin-left: 80px; // Account for collapsed sidebar width
+  margin-top: 80px; // Account for header height
   transition: margin-left 0.3s ease;
-  
-  &.sidebar-expanded {
-    margin-left: 250px; // Account for expanded sidebar width
+
+  // Default margin matches collapsed sidebar width
+  margin-left: 70px;
+
+  // Mobile adjustments
+  @media (max-width: 575.98px) {
+    margin-top: 70px; // Smaller header on mobile
+    padding: 15px;
+    margin-left: 70px; // Always collapsed on mobile
+  }
+}
+
+// When sidebar is expanded (md and up), push content to 250px
+@media (min-width: 768px) {
+  .main-content.sidebar-expanded {
+    margin-left: 250px;
   }
 }

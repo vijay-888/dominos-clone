@@ -4,7 +4,7 @@
 @import '../../../../../styles/variable.scss';
 
 .sidebar {
-  height: 100vh;
+  height: calc(100vh - 80px); // Subtract header height
   background: #000000;
   color: $sidebar-white;
   transition: width 0.3s ease;
@@ -12,8 +12,8 @@
   flex-direction: column;
   position: fixed;
   left: 0;
-  top: 0;
-  z-index: 1000;
+  top: 80px; // Position below header
+  z-index: 999; // Lower than header z-index
   box-shadow: 2px 0 10px $shadow-black-light;
   
   // Mobile first (xs) - collapsed by default
@@ -203,6 +203,7 @@
   .sidebar {
     // Ensure sidebar is always collapsed on mobile
     width: 70px !important;
+    height: calc(100vh - 70px); // Adjust for smaller header on mobile
     
     .sidebar-header {
       padding: 1rem 0.5rem;

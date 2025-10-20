@@ -4,13 +4,20 @@
     background-color: #f8f9fa;
   }
   
-  .main-content {
-    flex: 1;
-    padding: 20px;
-    margin-left: 80px; // Account for collapsed sidebar width
-    transition: margin-left 0.3s ease;
-    
-    &.sidebar-expanded {
-      margin-left: 250px; // Account for expanded sidebar width
-    }
+.main-content {
+  flex: 1;
+  padding: 20px;
+  margin-left: 80px; // Account for collapsed sidebar width
+  margin-top: 80px; // Account for header height
+  transition: margin-left 0.3s ease;
+  
+  &.sidebar-expanded {
+    margin-left: 250px; // Account for expanded sidebar width
   }
+  
+  // Mobile adjustments
+  @media (max-width: 575.98px) {
+    margin-top: 70px; // Smaller header on mobile
+    padding: 15px;
+  }
+}

@@ -3,8 +3,7 @@
     <!-- Left Side - Logo -->
     <div class="header-left">
       <div class="logo">
-        <i class="pi pi-pizza-slice logo-icon"></i>
-        <span class="logo-text">Food Frenzy</span>
+        <img src="/assets/images/lg.png" alt="Food Frenzy" class="logo-image" (error)="onLogoError($event)">
       </div>
     </div>
 
@@ -12,21 +11,21 @@
     <div class="header-right">
       <!-- Navigation Links -->
       <nav class="header-nav">
-        <a href="#" class="nav-link" (click)="goToDashboard()" [class.active]="isActiveRoute('/consumer/dashboard')">
+        <a class="nav-link" [routerLink]="'/consumer/dashboard'" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           <i class="pi pi-home"></i>
           <span>Dashboard</span>
         </a>
-        <a href="#" class="nav-link" (click)="goToFavorites()" [class.active]="isActiveRoute('/consumer/favorites')">
+        <a class="nav-link" [routerLink]="'/consumer/favorites'" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           <i class="pi pi-heart"></i>
           <span>Favorites</span>
         </a>
       </nav>
 
       <!-- Cart Icon -->
-      <div class="cart-icon" (click)="goToCart()" [class.has-items]="cartItemCount > 0">
+      <a class="cart-icon" [routerLink]="'/consumer/cart'" [class.has-items]="cartItemCount > 0">
         <i class="pi pi-shopping-cart"></i>
         <span class="cart-badge" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
-      </div>
+      </a>
 
       <!-- User Profile Icon -->
       <div class="user-icon" (click)="toggleUserMenu()">
