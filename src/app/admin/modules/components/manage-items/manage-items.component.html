@@ -20,7 +20,7 @@
         <i class="pi pi-box"></i>
       </div>
       <div class="stat-content">
-        <h3>{{ getTotalItems() }}</h3>
+        <h3 [appOdometer]="getTotalItems()">0</h3>
         <p>Total Items</p>
       </div>
     </div>
@@ -30,7 +30,7 @@
         <i class="pi pi-check-circle"></i>
       </div>
       <div class="stat-content">
-        <h3>{{ getApprovedItems() }}</h3>
+        <h3 [appOdometer]="getApprovedItems()">0</h3>
         <p>Approved</p>
       </div>
     </div>
@@ -40,7 +40,7 @@
         <i class="pi pi-clock"></i>
       </div>
       <div class="stat-content">
-        <h3>{{ getPendingItems() }}</h3>
+        <h3 [appOdometer]="getPendingItems()">0</h3>
         <p>Pending Review</p>
       </div>
     </div>
@@ -50,7 +50,7 @@
         <i class="pi pi-times-circle"></i>
       </div>
       <div class="stat-content">
-        <h3>{{ getRejectedItems() }}</h3>
+        <h3 [appOdometer]="getRejectedItems()">0</h3>
         <p>Rejected</p>
       </div>
     </div>
@@ -148,7 +148,7 @@
           
           <!-- Orders Column -->
           <td>
-            <span class="orders-count">{{ item.orders }}</span>
+            <span class="orders-count" [appOdometer]="item.orders">0</span>
           </td>
           
           <!-- Actions Column -->

@@ -8,6 +8,7 @@ import { TagModule } from 'primeng/tag';
 import { TooltipModule } from 'primeng/tooltip';
 
 import { ProviderHomeRoutingModule } from './provider-home-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { ProviderHomeComponent } from './provider-home.component';
 import { DashboardComponent } from '../components/dashboard/dashboard.component';
 import { SidebarComponent } from '../components/sidebar/sidebar.component';
@@ -30,7 +31,8 @@ import { ConsumerHomeModule } from 'src/app/consumer/modules/consumer-home/consu
     TagModule,
     TooltipModule,
     ProviderHomeRoutingModule,
-    ConsumerHomeModule
+    ConsumerHomeModule,
+    SharedModule
   ],
   providers: [DatePipe]
 })

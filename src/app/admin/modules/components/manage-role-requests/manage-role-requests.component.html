@@ -20,7 +20,7 @@
         <i class="pi pi-users"></i>
       </div>
       <div class="stat-content">
-        <h3>{{ getTotalRequests() }}</h3>
+        <h3 [appOdometer]="getTotalRequests()">0</h3>
         <p>Total Requests</p>
       </div>
     </div>
@@ -30,7 +30,7 @@
         <i class="pi pi-clock"></i>
       </div>
       <div class="stat-content">
-        <h3>{{ getPendingRequests() }}</h3>
+        <h3 [appOdometer]="getPendingRequests()">0</h3>
         <p>Pending Review</p>
       </div>
     </div>
@@ -40,7 +40,7 @@
         <i class="pi pi-check-circle"></i>
       </div>
       <div class="stat-content">
-        <h3>{{ getApprovedRequests() }}</h3>
+        <h3 [appOdometer]="getApprovedRequests()">0</h3>
         <p>Approved</p>
       </div>
     </div>
@@ -50,7 +50,7 @@
         <i class="pi pi-times-circle"></i>
       </div>
       <div class="stat-content">
-        <h3>{{ getRejectedRequests() }}</h3>
+        <h3 [appOdometer]="getRejectedRequests()">0</h3>
         <p>Rejected</p>
       </div>
     </div>

@@ -11,6 +11,7 @@ import { MenuItemsComponent } from '../../../shared/components/menu-items/menu-i
 import { MenuItemDetailsComponent } from '../../../shared/components/menu-item-details/menu-item-details.component';
 import { CartComponent } from '../../../shared/components/cart/cart.component';
 // import { HeaderComponent } from '../../../shared/components/header/header.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CartComponent } from '../../../shared/components/cart/cart.component';
     CommonModule,
     FormsModule,
     ConsumerHomeRoutingModule,
-    CardModule
+    CardModule,
+    SharedModule
   ],
   exports: [
     MenuItemsComponent,

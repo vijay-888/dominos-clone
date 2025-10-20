@@ -6,7 +6,10 @@
       Shopping Cart
     </h1>
     <div class="cart-summary" *ngIf="cartItems.length > 0">
-      <span class="item-count">{{ getTotalItems() }} {{ getTotalItems() === 1 ? 'item' : 'items' }}</span>
+      <span class="item-count">
+        <span [appOdometer]="getTotalItems()">0</span>
+        {{ getTotalItems() === 1 ? ' item' : ' items' }}
+      </span>
     </div>
   </div>
 

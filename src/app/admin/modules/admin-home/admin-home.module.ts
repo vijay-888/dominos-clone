@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdminHomeRoutingModule } from './admin-home-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { AdminHomeComponent } from './admin-home.component';
 import { AdminDashboardComponent } from '../components/dashboard/dashboard.component';
 import { SidebarComponent } from '../components/sidebar/sidebar.component';
@@ -23,7 +24,8 @@ import { TableModule } from "primeng/table";
     CommonModule,
     AdminHomeRoutingModule,
     TagModule,
-    TableModule
-]
+    TableModule,
+    SharedModule
+  ]
 })
 export class AdminHomeModule { }

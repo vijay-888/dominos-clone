@@ -11,7 +11,7 @@
     <div class="header-right">
       <!-- Navigation Links -->
       <nav class="header-nav">
-        <a class="nav-link" [routerLink]="'/consumer/dashboard'" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a class="nav-link" [routerLink]="currentRoute.includes('/admin') ? '/admin/dashboard' : '/consumer/dashboard'" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           <i class="pi pi-home"></i>
           <span>Dashboard</span>
         </a>
